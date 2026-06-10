@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DCEASY — DCE-MRI Software Suite</title>
+  <title>DCEASY — Dynamic Contrast-Enhanced Analysis SYstem</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -11,7 +11,7 @@
   <header>
     <div class="header-inner">
       <h1>DCEASY</h1>
-      <p class="tagline">Open-source tools for Dynamic Contrast-Enhanced MRI processing &amp; analysis</p>
+      <p class="tagline"><strong>D</strong>ynamic <strong>C</strong>ontrast-<strong>E</strong>nhanced <strong>A</strong>nalysis <strong>SY</strong>stem — open-source tools for DCE-MRI processing &amp; analysis</p>
     </div>
   </header>
 
@@ -19,10 +19,10 @@
 
     <section class="intro">
       <p>
-        DCEASY is a collection of open-source software maintained by the
+        DCEASY (<strong>D</strong>ynamic <strong>C</strong>ontrast-<strong>E</strong>nhanced <strong>A</strong>nalysis <strong>SY</strong>stem) is a collection of open-source software maintained by the
         <a href="https://github.com/petmri" target="_blank" rel="noopener">PET/MRI Lab</a>
         for end-to-end Dynamic Contrast-Enhanced (DCE) MRI workflows —
-        from parametric mapping and pharmacokinetic modelling to arterial input function (AIF) curation.
+        from parametric mapping and pharmacokinetic modelling to arterial input function (AIF) detection.
         Choose the tool that fits your step in the pipeline below.
       </p>
     </section>
@@ -32,8 +32,8 @@
       <ol class="steps">
         <li><span class="step-num">1</span> Acquire DCE-MRI data</li>
         <li><span class="step-num">2</span> Generate T1 / T2 / ADC maps → <strong>parametric_scripts</strong></li>
-        <li><span class="step-num">3</span> Annotate or fit the arterial input function → <strong>AIFArtist</strong> / <strong>ROCKETSHIP</strong></li>
-        <li><span class="step-num">4</span> Fit pharmacokinetic models (Ktrans, ve, vp …) → <strong>ROCKETSHIP</strong></li>
+        <li><span class="step-num">3</span> Automatically detect or manually annotate the AIF → <strong>AutoAIF</strong> (preferred) / <strong>AIFArtist</strong> / <strong>ROCKETSHIP</strong></li>
+        <li><span class="step-num">4</span> Fit pharmacokinetic models (Ktrans, ve, vp …) → <strong>ROCKETSHIP</strong> + <strong>gpufit</strong></li>
         <li><span class="step-num">5</span> Analyse &amp; compare parametric maps → <strong>ROCKETSHIP</strong></li>
       </ol>
     </section>
@@ -67,6 +67,32 @@
             <a class="btn primary" href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">GitHub</a>
             <a class="btn secondary" href="https://github.com/petmri/ROCKETSHIP/wiki" target="_blank" rel="noopener">Wiki / Docs</a>
             <a class="btn secondary" href="https://doi.org/10.1186/s12880-015-0062-3" target="_blank" rel="noopener">Paper (BMC 2015)</a>
+          </div>
+        </article>
+
+        <!-- AutoAIF -->
+        <article class="card">
+          <div class="card-header autoaif">
+            <h3>AutoAIF</h3>
+            <span class="badge python">Python</span>
+          </div>
+          <p class="card-desc">
+            <strong>Preferred for AIF detection.</strong> A 3D U-Net deep-learning model (Keras/TensorFlow)
+            that automatically detects the arterial input function in brain DCE-MRI.
+            Pretrained weights are provided; the model handles multi-site data by
+            resampling inputs to a canonical resolution and outputs a vascular
+            function curve together with a 3D vascular mask.
+          </p>
+          <ul class="card-highlights">
+            <li>Fully automatic — no manual ROI drawing required</li>
+            <li>Pretrained on multi-site brain DCE-MRI cohorts</li>
+            <li>Outputs vascular function curve + 3D mask (NIfTI)</li>
+            <li>Supports inference and fine-tuning on new datasets</li>
+            <li>Published in <em>Magnetic Resonance in Medicine</em> (2025)</li>
+          </ul>
+          <div class="card-links">
+            <a class="btn primary" href="https://github.com/petmri/vascular_function" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn secondary" href="https://doi.org/10.1002/mrm.70020" target="_blank" rel="noopener">Paper (MRM 2025)</a>
           </div>
         </article>
 
@@ -118,6 +144,31 @@
           </div>
         </article>
 
+        <!-- gpufit -->
+        <article class="card">
+          <div class="card-header gpufit">
+            <h3>gpufit</h3>
+            <span class="badge cuda">CUDA / C++</span>
+          </div>
+          <p class="card-desc">
+            A GPU-accelerated Levenberg–Marquardt curve-fitting library with
+            Python and MATLAB wrappers. This PET/MRI Lab fork adds MRI-specific
+            pharmacokinetic models and updated compiler/CUDA support. Used by
+            ROCKETSHIP for fast voxel-wise model fitting.
+          </p>
+          <ul class="card-highlights">
+            <li>Patlak, Tofts, Extended Tofts, Tissue Uptake, 2CXM, T1 FA Exponential</li>
+            <li>Full GPU (Gpufit) and CPU (Cpufit) parity for all MRI models</li>
+            <li>Pre-built binaries for Windows, Linux (CUDA 11.8–13.0), and macOS (CPU)</li>
+            <li>Python and MATLAB wrappers included</li>
+            <li>Based on Przybylski et al., <em>Scientific Reports</em> (2017)</li>
+          </ul>
+          <div class="card-links">
+            <a class="btn primary" href="https://github.com/petmri/gpufit" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn secondary" href="https://doi.org/10.1038/s41598-017-15313-9" target="_blank" rel="noopener">Paper (Sci Rep 2017)</a>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -137,12 +188,20 @@
               <td><a href="https://github.com/petmri/parametric_scripts" target="_blank" rel="noopener">parametric_scripts</a></td>
             </tr>
             <tr>
+              <td>Automatically detect the AIF (deep learning, preferred)</td>
+              <td><a href="https://github.com/petmri/vascular_function" target="_blank" rel="noopener">AutoAIF</a></td>
+            </tr>
+            <tr>
               <td>Manually draw and save an AIF ROI (multi-rater, BIDS)</td>
               <td><a href="https://github.com/petmri/AIFArtist" target="_blank" rel="noopener">AIFArtist</a></td>
             </tr>
             <tr>
               <td>Fit an AIF to a bi-exponential model</td>
               <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a> (Module B)</td>
+            </tr>
+            <tr>
+              <td>GPU-accelerated pharmacokinetic model fitting</td>
+              <td><a href="https://github.com/petmri/gpufit" target="_blank" rel="noopener">gpufit</a></td>
             </tr>
             <tr>
               <td>Pharmacokinetic model fitting (Ktrans, ve, vp)</td>
@@ -175,6 +234,20 @@ run_parametric   % Step 1 — T1 maps
 run_dce          % Step 2 — DCE fitting</code></pre>
         </div>
         <div class="qs-block">
+          <h3>AutoAIF</h3>
+          <pre><code># Clone and set up environment
+git clone https://github.com/petmri/vascular_function.git
+cd vascular_function
+python3 -m venv tf && source tf/bin/activate
+pip install -r requirements.txt
+
+# Run inference with pretrained weights
+python main_vif.py --mode inference \
+  --input_path /path/to/dce.nii.gz \
+  --model_weight_path /path/to/weight.h5 \
+  --save_output_path /path/to/output/</code></pre>
+        </div>
+        <div class="qs-block">
           <h3>AIFArtist</h3>
           <pre><code># Install dependencies
 pip install -r requirements.txt
@@ -202,7 +275,7 @@ python aif_artist.py /path/to/bids_dataset \
 
   <footer>
     <p>
-      DCEASY · PET/MRI Lab ·
+      DCEASY (Dynamic Contrast-Enhanced Analysis SYstem) · PET/MRI Lab ·
       <a href="https://github.com/petmri" target="_blank" rel="noopener">github.com/petmri</a>
     </p>
   </footer>
