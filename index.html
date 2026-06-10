@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DCEASY — DCE-MRI Software Suite</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <h1>DCEASY</h1>
+      <p class="tagline">Open-source tools for Dynamic Contrast-Enhanced MRI processing &amp; analysis</p>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="intro">
+      <p>
+        DCEASY is a collection of open-source software maintained by the
+        <a href="https://github.com/petmri" target="_blank" rel="noopener">PET/MRI Lab</a>
+        for end-to-end Dynamic Contrast-Enhanced (DCE) MRI workflows —
+        from parametric mapping and pharmacokinetic modelling to arterial input function (AIF) curation.
+        Choose the tool that fits your step in the pipeline below.
+      </p>
+    </section>
+
+    <section class="pipeline">
+      <h2>Processing pipeline overview</h2>
+      <ol class="steps">
+        <li><span class="step-num">1</span> Acquire DCE-MRI data</li>
+        <li><span class="step-num">2</span> Generate T1 / T2 / ADC maps → <strong>parametric_scripts</strong></li>
+        <li><span class="step-num">3</span> Annotate or fit the arterial input function → <strong>AIFArtist</strong> / <strong>ROCKETSHIP</strong></li>
+        <li><span class="step-num">4</span> Fit pharmacokinetic models (Ktrans, ve, vp …) → <strong>ROCKETSHIP</strong></li>
+        <li><span class="step-num">5</span> Analyse &amp; compare parametric maps → <strong>ROCKETSHIP</strong></li>
+      </ol>
+    </section>
+
+    <section class="tools">
+      <h2>Tools</h2>
+
+      <div class="cards">
+
+        <!-- ROCKETSHIP -->
+        <article class="card">
+          <div class="card-header rocketship">
+            <h3>ROCKETSHIP</h3>
+            <span class="badge matlab">MATLAB</span>
+          </div>
+          <p class="card-desc">
+            A flexible, GUI-driven suite for full DCE-MRI analysis. Covers pre-contrast
+            T1 mapping, AIF selection and fitting, multi-model pharmacokinetic curve
+            fitting (Tofts, Extended Tofts, Patlak, Two-Compartment Exchange, FXR, …),
+            and results visualisation. Supports NIFTI and DICOM inputs and optional
+            GPU acceleration.
+          </p>
+          <ul class="card-highlights">
+            <li>Tofts, Extended Tofts, Patlak, 2CXM, FXR, tissue-uptake models</li>
+            <li>GUI-based workflow — no scripting required</li>
+            <li>Batch processing via parallel computing toolbox</li>
+            <li>Optional GPU acceleration (Gpufit)</li>
+            <li>52 ★ on GitHub · cited in <em>BMC Medical Imaging</em></li>
+          </ul>
+          <div class="card-links">
+            <a class="btn primary" href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn secondary" href="https://github.com/petmri/ROCKETSHIP/wiki" target="_blank" rel="noopener">Wiki / Docs</a>
+            <a class="btn secondary" href="https://doi.org/10.1186/s12880-015-0062-3" target="_blank" rel="noopener">Paper (BMC 2015)</a>
+          </div>
+        </article>
+
+        <!-- AIFArtist -->
+        <article class="card">
+          <div class="card-header aifartist">
+            <h3>AIFArtist</h3>
+            <span class="badge python">Python</span>
+          </div>
+          <p class="card-desc">
+            A napari desktop application for manual arterial input function (AIF)
+            annotation on 4D MRI NIfTI data. Designed for high-volume multi-rater
+            review sessions: draw a 3D ROI, inspect the mean signal-intensity
+            curve over time, save a BIDS-style derivative, and jump straight to
+            the next case.
+          </p>
+          <ul class="card-highlights">
+            <li>Loads BIDS-compliant 4D <code>desc-hmc_DCE.nii[.gz]</code> files, directories, or manifest lists</li>
+            <li>Live ROI curve preview with per-label and normalised views</li>
+            <li>BIDS-style derivative outputs with rater ID embedded in filenames</li>
+            <li>Auto-resumes at first unreviewed case; prefetches next image</li>
+            <li>Flag-and-skip for poor AIFs or missing baselines</li>
+          </ul>
+          <div class="card-links">
+            <a class="btn primary" href="https://github.com/petmri/AIFArtist" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
+
+        <!-- parametric_scripts -->
+        <article class="card">
+          <div class="card-header parametric">
+            <h3>parametric_scripts</h3>
+            <span class="badge matlab">MATLAB</span>
+          </div>
+          <p class="card-desc">
+            The ROCKETSHIP parametric mapping module, also usable as a
+            stand-alone tool. Generates T1, T2, T2*, and ADC maps from
+            multi-echo or inversion-recovery NIFTI series — a required
+            pre-processing step for accurate DCE pharmacokinetic modelling.
+          </p>
+          <ul class="card-highlights">
+            <li>T1 (inversion recovery), T2, T2*, and ADC map generation</li>
+            <li>GUI-based interface (fitting_gui)</li>
+            <li>Batch processing and parallel fitting support</li>
+            <li>NIFTI and DICOM input support</li>
+          </ul>
+          <div class="card-links">
+            <a class="btn primary" href="https://github.com/petmri/parametric_scripts" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="comparison">
+      <h2>Which tool do I need?</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>Tool</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Generate pre-contrast T1, T2, or ADC maps</td>
+              <td><a href="https://github.com/petmri/parametric_scripts" target="_blank" rel="noopener">parametric_scripts</a></td>
+            </tr>
+            <tr>
+              <td>Manually draw and save an AIF ROI (multi-rater, BIDS)</td>
+              <td><a href="https://github.com/petmri/AIFArtist" target="_blank" rel="noopener">AIFArtist</a></td>
+            </tr>
+            <tr>
+              <td>Fit an AIF to a bi-exponential model</td>
+              <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a> (Module B)</td>
+            </tr>
+            <tr>
+              <td>Pharmacokinetic model fitting (Ktrans, ve, vp)</td>
+              <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a> (Module D)</td>
+            </tr>
+            <tr>
+              <td>End-to-end DCE pipeline with GUI</td>
+              <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a></td>
+            </tr>
+            <tr>
+              <td>Visualise and compare parametric maps</td>
+              <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a> (Module E)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="getting-started">
+      <h2>Quick start</h2>
+      <div class="qs-grid">
+        <div class="qs-block">
+          <h3>ROCKETSHIP</h3>
+          <pre><code># Clone (includes submodules)
+git clone --recursive \
+  https://github.com/petmri/ROCKETSHIP.git
+
+# In MATLAB, add ROCKETSHIP to the path, then:
+run_parametric   % Step 1 — T1 maps
+run_dce          % Step 2 — DCE fitting</code></pre>
+        </div>
+        <div class="qs-block">
+          <h3>AIFArtist</h3>
+          <pre><code># Install dependencies
+pip install -r requirements.txt
+
+# Launch the annotation app
+python aif_artist.py /path/to/bids_dataset \
+  --rater AB</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact">
+      <h2>Contact &amp; contributing</h2>
+      <p>
+        Questions? Open an issue on the relevant repository or contact the lab
+        maintainer at <a href="mailto:sabarnes@llu.edu">sabarnes@llu.edu</a>.
+        Contributions via pull request are welcome on all repositories.
+      </p>
+      <p>
+        <a class="btn primary" href="https://github.com/petmri" target="_blank" rel="noopener">View all repositories →</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      DCEASY · PET/MRI Lab ·
+      <a href="https://github.com/petmri" target="_blank" rel="noopener">github.com/petmri</a>
+    </p>
+  </footer>
+
+</body>
+</html>
