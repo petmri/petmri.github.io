@@ -31,7 +31,7 @@
       <h2>Processing pipeline overview</h2>
       <ol class="steps">
         <li><span class="step-num">1</span> Acquire DCE-MRI data</li>
-        <li><span class="step-num">2</span> Generate T1 / T2 / ADC maps → <strong>parametric_scripts</strong></li>
+        <li><span class="step-num">2</span> Preprocess &amp; generate T1 / T2 / ADC maps → <strong>DCEPrep</strong> (end-to-end) / <strong>parametric_scripts</strong> (standalone)</li>
         <li><span class="step-num">3</span> Automatically detect or manually annotate the AIF → <strong>AutoAIF</strong> (preferred) / <strong>AIFArtist</strong> / <strong>ROCKETSHIP</strong></li>
         <li><span class="step-num">4</span> Fit pharmacokinetic models (Ktrans, ve, vp …) → <strong>ROCKETSHIP</strong> + <strong>gpufit</strong></li>
         <li><span class="step-num">5</span> Analyse &amp; compare parametric maps → <strong>ROCKETSHIP</strong></li>
@@ -169,6 +169,33 @@
           </div>
         </article>
 
+        <!-- DCEPrep -->
+        <article class="card">
+          <div class="card-header dceprep">
+            <h3>DCEPrep</h3>
+            <span class="badge shell">Shell / Python</span>
+          </div>
+          <p class="card-desc">
+            An end-to-end preprocessing and analysis pipeline for brain DCE-MRI.
+            Wraps FSL, ANTs, FreeSurfer, ROCKETSHIP, and AutoAIF into a single
+            configurable shell script. Handles VFA-based T1 mapping, bias field
+            correction, z-axis normalisation, head motion correction, AIF
+            selection, Ktrans fitting, and automated QC reporting. A Docker
+            image is provided for a consistent, reproducible environment.
+          </p>
+          <ul class="card-highlights">
+            <li>BIDS-compliant input/output</li>
+            <li>VFA T1 mapping, bias field correction, z-axis normalisation</li>
+            <li>Head motion correction via FSL <code>mcflirt</code></li>
+            <li>AutoAIF integration for automatic AIF detection</li>
+            <li>Ktrans / vp mapping + per-case &amp; population HTML QC reports</li>
+            <li>Docker image available for easy, reproducible deployment</li>
+          </ul>
+          <div class="card-links">
+            <a class="btn primary" href="https://github.com/petmri/DCEPrep" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -186,6 +213,10 @@
             <tr>
               <td>Generate pre-contrast T1, T2, or ADC maps</td>
               <td><a href="https://github.com/petmri/parametric_scripts" target="_blank" rel="noopener">parametric_scripts</a></td>
+            </tr>
+            <tr>
+              <td>Full preprocessing pipeline (T1 map, motion correction, AIF, Ktrans)</td>
+              <td><a href="https://github.com/petmri/DCEPrep" target="_blank" rel="noopener">DCEPrep</a></td>
             </tr>
             <tr>
               <td>Automatically detect the AIF (deep learning, preferred)</td>
@@ -210,6 +241,10 @@
             <tr>
               <td>End-to-end DCE pipeline with GUI</td>
               <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a></td>
+            </tr>
+            <tr>
+              <td>Dockerized end-to-end DCE-MRI preprocessing &amp; analysis</td>
+              <td><a href="https://github.com/petmri/DCEPrep" target="_blank" rel="noopener">DCEPrep</a></td>
             </tr>
             <tr>
               <td>Visualise and compare parametric maps</td>

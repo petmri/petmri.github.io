@@ -153,6 +153,7 @@ section h2 {
 .card-header.autoaif     { background: #0a2318; }
 .card-header.parametric  { background: #0e1b2e; }
 .card-header.gpufit      { background: #1c0d2e; }
+.card-header.dceprep     { background: #0e2b2b; }
 
 .badge {
   font-size: 0.7rem;
@@ -166,6 +167,7 @@ section h2 {
 .badge.matlab  { background: #c0392b; color: #fff; }
 .badge.python  { background: #b7770d; color: #fff; }
 .badge.cuda    { background: #4a7c00; color: #fff; }
+.badge.shell   { background: #2c6e49; color: #fff; }
 
 .card-desc {
   padding: 1rem 1.25rem 0.5rem;
