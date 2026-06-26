@@ -28,12 +28,12 @@
     </section>
 
     <section class="pipeline">
-      <h2>Processing pipeline overview</h2>
+      <h2>DCE Processing pipeline overview</h2>
       <ol class="steps">
         <li><span class="step-num">1</span> Acquire DCE-MRI data</li>
-        <li><span class="step-num">2</span> Preprocess &amp; generate T1 / T2 / ADC maps → <strong>DCEPrep</strong> (end-to-end) / <strong>parametric_scripts</strong> (standalone)</li>
-        <li><span class="step-num">3</span> Automatically detect or manually annotate the AIF → <strong>AutoAIF</strong> (preferred) / <strong>AIFArtist</strong> / <strong>ROCKETSHIP</strong></li>
-        <li><span class="step-num">4</span> Fit pharmacokinetic models (Ktrans, ve, vp …) → <strong>ROCKETSHIP</strong> + <strong>gpufit</strong></li>
+        <li><span class="step-num">2</span> Preprocess &amp; generate T1 maps → <strong>DCEPrep</strong> (end-to-end) / <strong>parametric_scripts</strong> (T1 maps only)</li>
+        <li><span class="step-num">3</span> Extract an AIF → <strong>AutoAIF</strong> (automatic) / <strong>AIFArtist (manual)</strong></li>
+        <li><span class="step-num">4</span> Fit pharmacokinetic models (Ktrans, ve, vp …) → <strong>DCEPrep</strong> (end-to-end) / <strong>ROCKETSHIP</strong> + <strong>gpufit</strong> (standalone)</li>
         <li><span class="step-num">5</span> Analyse &amp; compare parametric maps → <strong>ROCKETSHIP</strong></li>
       </ol>
     </section>
@@ -91,7 +91,7 @@
             <li>Published in <em>Magnetic Resonance in Medicine</em> (2025)</li>
           </ul>
           <div class="card-links">
-            <a class="btn primary" href="https://github.com/petmri/vascular_function" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn primary" href="https://github.com/petmri/AutoAIF" target="_blank" rel="noopener">GitHub</a>
             <a class="btn secondary" href="https://doi.org/10.1002/mrm.70020" target="_blank" rel="noopener">Paper (MRM 2025)</a>
           </div>
         </article>
@@ -164,7 +164,7 @@
             <li>Based on Przybylski et al., <em>Scientific Reports</em> (2017)</li>
           </ul>
           <div class="card-links">
-            <a class="btn primary" href="https://github.com/petmri/gpufit" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn primary" href="https://github.com/petmri/Gpufit" target="_blank" rel="noopener">GitHub</a>
             <a class="btn secondary" href="https://doi.org/10.1038/s41598-017-15313-9" target="_blank" rel="noopener">Paper (Sci Rep 2017)</a>
           </div>
         </article>
@@ -211,43 +211,35 @@
           </thead>
           <tbody>
             <tr>
-              <td>Generate pre-contrast T1, T2, or ADC maps</td>
+              <td>Full automated processing pipeline of BIDS DCE data (motion correction, alignment, artifact correction, create T1 maps, AIF detection, Ktrans generation)</td>
+              <td><a href="https://github.com/petmri/DCEPrep" target="_blank" rel="noopener">DCEPrep</a></td>
+            </tr>
+            <tr>
+              <td>Generate T1, T2, or ADC maps</td>
               <td><a href="https://github.com/petmri/parametric_scripts" target="_blank" rel="noopener">parametric_scripts</a></td>
             </tr>
             <tr>
-              <td>Full preprocessing pipeline (T1 map, motion correction, AIF, Ktrans)</td>
-              <td><a href="https://github.com/petmri/DCEPrep" target="_blank" rel="noopener">DCEPrep</a></td>
+              <td>AIF identification, automatically with deep learning (preferred)</td>
+              <td><a href="https://github.com/petmri/AutoAIF" target="_blank" rel="noopener">AutoAIF</a></td>
             </tr>
             <tr>
-              <td>Automatically detect the AIF (deep learning, preferred)</td>
-              <td><a href="https://github.com/petmri/vascular_function" target="_blank" rel="noopener">AutoAIF</a></td>
-            </tr>
-            <tr>
-              <td>Manually draw and save an AIF ROI (multi-rater, BIDS)</td>
+              <td>AIF identification, manually draw and save an AIF ROI (multi-rater)</td>
               <td><a href="https://github.com/petmri/AIFArtist" target="_blank" rel="noopener">AIFArtist</a></td>
             </tr>
             <tr>
-              <td>Fit an AIF to a bi-exponential model</td>
-              <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a> (Module B)</td>
+              <td>Scripted low level fast pharmacokinetic model fitting (useful to accelerate other DCE processing pipelines)</td>
+              <td><a href="https://github.com/petmri/Gpufit" target="_blank" rel="noopener">gpufit</a></td>
             </tr>
             <tr>
-              <td>GPU-accelerated pharmacokinetic model fitting</td>
-              <td><a href="https://github.com/petmri/gpufit" target="_blank" rel="noopener">gpufit</a></td>
-            </tr>
-            <tr>
-              <td>Pharmacokinetic model fitting (Ktrans, ve, vp)</td>
-              <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a> (Module D)</td>
-            </tr>
-            <tr>
-              <td>End-to-end DCE pipeline with GUI</td>
+              <td>DCE processing with GUI</td>
               <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a></td>
             </tr>
             <tr>
-              <td>Dockerized end-to-end DCE-MRI preprocessing &amp; analysis</td>
+              <td>DCE-MRI preprocessing of BIDS DCE data (motion correction, alignment, artifact correction)</td>
               <td><a href="https://github.com/petmri/DCEPrep" target="_blank" rel="noopener">DCEPrep</a></td>
             </tr>
             <tr>
-              <td>Visualise and compare parametric maps</td>
+              <td>Visualise and compare fit quality and parametric maps</td>
               <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a> (Module E)</td>
             </tr>
           </tbody>
@@ -271,8 +263,8 @@ run_dce          % Step 2 — DCE fitting</code></pre>
         <div class="qs-block">
           <h3>AutoAIF</h3>
           <pre><code># Clone and set up environment
-git clone https://github.com/petmri/vascular_function.git
-cd vascular_function
+git clone https://github.com/petmri/AutoAIF.git
+cd AutoAIF
 python3 -m venv tf && source tf/bin/activate
 pip install -r requirements.txt
 
