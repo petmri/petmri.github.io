@@ -82,6 +82,47 @@ section h2 {
   max-width: 780px;
 }
 
+/* ===== Pipeline: two paths ===== */
+.path-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #63c0f5;
+  margin: 1.75rem 0 0.85rem;
+}
+
+.path-label:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.end-to-end {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.e2e-tool {
+  background: #1e1e1e;
+  border: 1px solid #2a2a2a;
+  border-left: 3px solid #63c0f5;
+  border-radius: 8px;
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.e2e-tool strong {
+  color: #e8e8e8;
+  font-size: 1.05rem;
+}
+
+.e2e-tool span {
+  font-size: 0.88rem;
+  color: #999;
+}
+
 /* ===== Pipeline steps ===== */
 .steps {
   list-style: none;

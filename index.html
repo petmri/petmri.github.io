@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Open-source DCE-MRI processing and analysis tools from the PET/MRI Lab — parametric mapping, AIF detection, and pharmacokinetic modeling." />
   <title>DCEASY — Dynamic Contrast-Enhanced Analysis SYstem</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -10,8 +11,10 @@
 
   <header>
     <div class="header-inner">
-      <h1>DCEASY</h1>
-      <p class="tagline"><strong>D</strong>ynamic <strong>C</strong>ontrast-<strong>E</strong>nhanced <strong>A</strong>nalysis <strong>SY</strong>stem — open-source tools for DCE-MRI processing &amp; analysis</p>
+      <h1>DCE Processing Tools</h1>
+      <h2>DCEASY</h2>
+      <p class="tagline"><strong>(D</strong>ynamic <strong>C</strong>ontrast-<strong>E</strong>nhanced 
+        <strong>A</strong>nalysis <strong>SY</strong>stem)</p>
     </div>
   </header>
 
@@ -19,22 +22,32 @@
 
     <section class="intro">
       <p>
-        DCEASY (<strong>D</strong>ynamic <strong>C</strong>ontrast-<strong>E</strong>nhanced <strong>A</strong>nalysis <strong>SY</strong>stem) is a collection of open-source software maintained by the
+        DCEASY is a collection of open-source software maintained by the
         <a href="https://github.com/petmri" target="_blank" rel="noopener">PET/MRI Lab</a>
         for end-to-end Dynamic Contrast-Enhanced (DCE) MRI workflows —
-        from parametric mapping and pharmacokinetic modelling to arterial input function (AIF) detection.
+        from parametric mapping and pharmacokinetic modeling to arterial input function (AIF) detection.
         Choose the tool that fits your step in the pipeline below.
       </p>
     </section>
 
     <section class="pipeline">
-      <h2>DCE Processing pipeline overview</h2>
+      <h2>DCE Processing Overview</h2>
+
+      <h3 class="path-label">Run the whole pipeline at once</h3>
+      <div class="end-to-end">
+        <div class="e2e-tool">
+          <strong>DCEPrep</strong>
+          <span>Automated &amp; Dockerized — preprocessing through quality control and analysis (steps 1–5)</span>
+        </div>
+      </div>
+
+      <h3 class="path-label">…or run it step by step</h3>
       <ol class="steps">
-        <li><span class="step-num">1</span> Acquire DCE-MRI data</li>
-        <li><span class="step-num">2</span> Preprocess &amp; generate T1 maps → <strong>DCEPrep</strong> (end-to-end) / <strong>parametric_scripts</strong> (T1 maps only)</li>
-        <li><span class="step-num">3</span> Extract an AIF → <strong>AutoAIF</strong> (automatic) / <strong>AIFArtist (manual)</strong></li>
-        <li><span class="step-num">4</span> Fit pharmacokinetic models (Ktrans, ve, vp …) → <strong>DCEPrep</strong> (end-to-end) / <strong>ROCKETSHIP</strong> + <strong>gpufit</strong> (standalone)</li>
-        <li><span class="step-num">5</span> Analyse &amp; compare parametric maps → <strong>ROCKETSHIP</strong></li>
+        <li><span class="step-num">1</span> Preprocessing → standard MRI tools (FSL, ANTs, etc.)</li>
+        <li><span class="step-num">2</span> Generate T1 maps → <strong>parametric_scripts</strong></li>
+        <li><span class="step-num">3</span> Extract an AIF → <strong>AutoAIF</strong> (automatic) / <strong>AIFArtist</strong> (manual)</li>
+        <li><span class="step-num">4</span> Signal intensity to concentration, fit pharmacokinetic models (Ktrans, ve, vp …) → <strong>ROCKETSHIP</strong> + <strong>Gpufit</strong></li>
+        <li><span class="step-num">5</span> Analyze &amp; compare parametric maps → <strong>ROCKETSHIP</strong></li>
       </ol>
     </section>
 
@@ -53,7 +66,7 @@
             A flexible, GUI-driven suite for full DCE-MRI analysis. Covers pre-contrast
             T1 mapping, AIF selection and fitting, multi-model pharmacokinetic curve
             fitting (Tofts, Extended Tofts, Patlak, Two-Compartment Exchange, FXR, …),
-            and results visualisation. Supports NIFTI and DICOM inputs and optional
+            and results visualization. Supports NIFTI and DICOM inputs and optional
             GPU acceleration.
           </p>
           <ul class="card-highlights">
@@ -61,7 +74,7 @@
             <li>GUI-based workflow — no scripting required</li>
             <li>Batch processing via parallel computing toolbox</li>
             <li>Optional GPU acceleration (Gpufit)</li>
-            <li>52 ★ on GitHub · cited in <em>BMC Medical Imaging</em></li>
+            <li>Cited in <em>BMC Medical Imaging</em></li>
           </ul>
           <div class="card-links">
             <a class="btn primary" href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">GitHub</a>
@@ -111,7 +124,7 @@
           </p>
           <ul class="card-highlights">
             <li>Loads BIDS-compliant 4D <code>desc-hmc_DCE.nii[.gz]</code> files, directories, or manifest lists</li>
-            <li>Live ROI curve preview with per-label and normalised views</li>
+            <li>Live ROI curve preview with per-label and normalized views</li>
             <li>BIDS-style derivative outputs with rater ID embedded in filenames</li>
             <li>Auto-resumes at first unreviewed case; prefetches next image</li>
             <li>Flag-and-skip for poor AIFs or missing baselines</li>
@@ -131,7 +144,7 @@
             The ROCKETSHIP parametric mapping module, also usable as a
             stand-alone tool. Generates T1, T2, T2*, and ADC maps from
             multi-echo or inversion-recovery NIFTI series — a required
-            pre-processing step for accurate DCE pharmacokinetic modelling.
+            pre-processing step for accurate DCE pharmacokinetic modeling.
           </p>
           <ul class="card-highlights">
             <li>T1 (inversion recovery), T2, T2*, and ADC map generation</li>
@@ -147,7 +160,7 @@
         <!-- gpufit -->
         <article class="card">
           <div class="card-header gpufit">
-            <h3>gpufit</h3>
+            <h3>Gpufit</h3>
             <span class="badge cuda">CUDA / C++</span>
           </div>
           <p class="card-desc">
@@ -179,13 +192,13 @@
             An end-to-end preprocessing and analysis pipeline for brain DCE-MRI.
             Wraps FSL, ANTs, FreeSurfer, ROCKETSHIP, and AutoAIF into a single
             configurable shell script. Handles VFA-based T1 mapping, bias field
-            correction, z-axis normalisation, head motion correction, AIF
+            correction, z-axis normalization, head motion correction, AIF
             selection, Ktrans fitting, and automated QC reporting. A Docker
             image is provided for a consistent, reproducible environment.
           </p>
           <ul class="card-highlights">
             <li>BIDS-compliant input/output</li>
-            <li>VFA T1 mapping, bias field correction, z-axis normalisation</li>
+            <li>VFA T1 mapping, bias field correction, z-axis normalization</li>
             <li>Head motion correction via FSL <code>mcflirt</code></li>
             <li>AutoAIF integration for automatic AIF detection</li>
             <li>Ktrans / vp mapping + per-case &amp; population HTML QC reports</li>
@@ -211,7 +224,11 @@
           </thead>
           <tbody>
             <tr>
-              <td>Full automated processing pipeline of BIDS DCE data (motion correction, alignment, artifact correction, create T1 maps, AIF detection, Ktrans generation)</td>
+              <td>Automated complete processing pipeline of BIDS DCE data (motion correction, alignment, artifact correction, create T1 maps, AIF detection, pharmacokinetic fitting, QC)</td>
+              <td><a href="https://github.com/petmri/DCEPrep" target="_blank" rel="noopener">DCEPrep</a></td>
+            </tr>
+            <tr>
+              <td>Automated preprocessing only of BIDS DCE data (motion correction, alignment, artifact correction)</td>
               <td><a href="https://github.com/petmri/DCEPrep" target="_blank" rel="noopener">DCEPrep</a></td>
             </tr>
             <tr>
@@ -228,18 +245,14 @@
             </tr>
             <tr>
               <td>Scripted low level fast pharmacokinetic model fitting (useful to accelerate other DCE processing pipelines)</td>
-              <td><a href="https://github.com/petmri/Gpufit" target="_blank" rel="noopener">gpufit</a></td>
+              <td><a href="https://github.com/petmri/Gpufit" target="_blank" rel="noopener">Gpufit</a></td>
             </tr>
             <tr>
               <td>DCE processing with GUI</td>
               <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a></td>
             </tr>
             <tr>
-              <td>DCE-MRI preprocessing of BIDS DCE data (motion correction, alignment, artifact correction)</td>
-              <td><a href="https://github.com/petmri/DCEPrep" target="_blank" rel="noopener">DCEPrep</a></td>
-            </tr>
-            <tr>
-              <td>Visualise and compare fit quality and parametric maps</td>
+              <td>Visualize and compare fit quality and parametric maps</td>
               <td><a href="https://github.com/petmri/ROCKETSHIP" target="_blank" rel="noopener">ROCKETSHIP</a> (Module E)</td>
             </tr>
           </tbody>
@@ -276,7 +289,9 @@ python main_vif.py --mode inference \
         </div>
         <div class="qs-block">
           <h3>AIFArtist</h3>
-          <pre><code># Install dependencies
+          <pre><code># Clone and install dependencies
+git clone https://github.com/petmri/AIFArtist.git
+cd AIFArtist
 pip install -r requirements.txt
 
 # Launch the annotation app
