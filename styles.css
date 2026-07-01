@@ -102,6 +102,10 @@ section h2 {
   gap: 1rem;
 }
 
+.end-to-end + .end-to-end {
+  margin-top: 0.85rem;
+}
+
 .e2e-tool {
   background: #1e1e1e;
   border: 1px solid #2a2a2a;
@@ -195,6 +199,7 @@ section h2 {
 .card-header.parametric  { background: #0e1b2e; }
 .card-header.gpufit      { background: #1c0d2e; }
 .card-header.dceprep     { background: #0e2b2b; }
+.card-header.dce2bids    { background: #2b1c0d; }
 
 .badge {
   font-size: 0.7rem;
@@ -209,6 +214,7 @@ section h2 {
 .badge.python  { background: #b7770d; color: #fff; }
 .badge.cuda    { background: #4a7c00; color: #fff; }
 .badge.shell   { background: #2c6e49; color: #fff; }
+.badge.agent   { background: #6d4bc0; color: #fff; }
 
 .card-desc {
   padding: 1rem 1.25rem 0.5rem;

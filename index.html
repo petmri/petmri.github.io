@@ -25,7 +25,8 @@
         DCEASY is a collection of open-source software maintained by the
         <a href="https://github.com/petmri" target="_blank" rel="noopener">PET/MRI Lab</a>
         for end-to-end Dynamic Contrast-Enhanced (DCE) MRI workflows —
-        from parametric mapping and pharmacokinetic modeling to arterial input function (AIF) detection.
+        from DICOM-to-BIDS conversion and parametric mapping to pharmacokinetic
+        modeling and arterial input function (AIF) detection.
         Choose the tool that fits your step in the pipeline below.
       </p>
     </section>
@@ -36,6 +37,12 @@
       <h3 class="path-label">Run the whole pipeline at once</h3>
       <div class="end-to-end">
         <div class="e2e-tool">
+          <strong>dce2bids</strong>
+          <span>AI-assisted DICOM → BIDS conversion — the required first step before either path below.</span>
+        </div>
+      </div>
+      <div class="end-to-end">
+        <div class="e2e-tool">
           <strong>DCEPrep</strong>
           <span>Automated &amp; Dockerized — preprocessing through quality control and analysis (steps 1–5)</span>
         </div>
@@ -43,7 +50,7 @@
 
       <h3 class="path-label">…or run it step by step</h3>
       <ol class="steps">
-        <li><span class="step-num">1</span> Preprocessing → standard MRI tools (FSL, ANTs, etc.)</li>
+        <li><span class="step-num">1</span> Convert and Preprocessing → standard MRI tools (dcm2niix, FSL, ANTs, etc.)</li>
         <li><span class="step-num">2</span> Generate T1 maps → <strong>parametric_scripts</strong></li>
         <li><span class="step-num">3</span> Extract an AIF → <strong>AutoAIF</strong> (automatic) / <strong>AIFArtist</strong> (manual)</li>
         <li><span class="step-num">4</span> Signal intensity to concentration, fit pharmacokinetic models (Ktrans, ve, vp …) → <strong>ROCKETSHIP</strong> + <strong>Gpufit</strong></li>
@@ -55,6 +62,31 @@
       <h2>Tools</h2>
 
       <div class="cards">
+
+        <!-- dce2bids -->
+        <article class="card">
+          <div class="card-header dce2bids">
+            <h3>dce2bids</h3>
+            <span class="badge agent">Python / AI</span>
+          </div>
+          <p class="card-desc">
+            <strong>Start here.</strong> Converts raw DCE-MRI DICOMs straight from the
+            scanner into a tidy, standard BIDS dataset. An AI coding agent (e.g. Claude
+            Code) works out the right per-scanner settings once; after that each new
+            participant converts with a single command. Lets the AI handle the required 
+            customization and trouble shooting, but includes guardrails and verification.
+          </p>
+          <ul class="card-highlights">
+            <li>Auto-selects the dynamic DCE, VFA flip-angle, and structural series</li>
+            <li>AI assistant handles fiddly per-scanner/protocol setup, just once</li>
+            <li>Saves a reusable <code>run_dce2bids.sh</code> for future cases</li>
+            <li>DICOM → NIfTI with BIDS-compliant output and a status report</li>
+            <li>Built-in <code>verify_bids.py</code> validation</li>
+          </ul>
+          <div class="card-links">
+            <a class="btn primary" href="https://github.com/petmri/dce2bids" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
 
         <!-- ROCKETSHIP -->
         <article class="card">
@@ -223,6 +255,10 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>Convert raw scanner DICOMs into a BIDS dataset (first step before everything below)</td>
+              <td><a href="https://github.com/petmri/dce2bids" target="_blank" rel="noopener">dce2bids</a></td>
+            </tr>
             <tr>
               <td>Automated complete processing pipeline of BIDS DCE data (motion correction, alignment, artifact correction, create T1 maps, AIF detection, pharmacokinetic fitting, QC)</td>
               <td><a href="https://github.com/petmri/DCEPrep" target="_blank" rel="noopener">DCEPrep</a></td>
