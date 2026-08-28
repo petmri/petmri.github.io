@@ -6,9 +6,13 @@ name: docs
 # Build and deployment). Until it is, this workflow builds but the deploy step
 # has nothing to publish to.
 #
-# The custom domain lives in docs/CNAME so it ends up inside the artifact.
-# A CNAME that only exists at the repo root is not part of the build output and
-# would be dropped the first time this deploys.
+# The custom domain lives in docs/CNAME so that it ends up inside the artifact.
+# There is deliberately no CNAME at the repository root: under the Actions
+# source it is never read, and keeping one invites the two copies to disagree.
+#
+# Action majors are kept current because GitHub retires the Node runtime they
+# run on, not because this workflow needs new features. All four below are on
+# node24; upload-pages-artifact pins upload-artifact internally.
 
 on:
   push:
@@ -31,13 +35,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
       - run: pip install -r requirements.txt
       - run: zensical build --strict
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
@@ -49,4 +53,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
