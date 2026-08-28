@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1065 389"
+     class="dceasy-band" role="img"
+     aria-label="DCEPrep — Preprocessing and analysis pipeline for DCE-MRI">
+  <defs>
+  <linearGradient id="dceasy-band-dceprep" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#FBFAF6"/>
+  <stop offset="1" stop-color="#EDF0F2"/>
+  </linearGradient>
+  </defs>
+  <rect width="1065" height="389" fill="url(#dceasy-band-dceprep)"/>
+  <g stroke="#D5DBDF" stroke-width="1" fill="none">
+  <path d="M145 17 V371 M200 17 V371 M255 17 V371 M90 87.8 H310 M90 158.6 H310 M90 229.4 H310 M90 300.2 H310"/>
+  </g>
+  <path d="M90 17 V371 H310" stroke="#0D1F3C" stroke-width="2.5" fill="none"/>
+  <g fill="none" stroke-width="3.6" stroke-linecap="round">
+  <path d="M90 371 C 103 371 122 95 145 68 C 158 53 168 120 182 175 C 205 265 265 296 310 305" stroke="#0D1F3C"/>
+  <path d="M90 371 C 106 371 132 200 168 178 C 205 156 235 180 265 190 C 283 196 297 197 310 198" stroke="#16707f"/>
+  <path d="M90 371 C 112 369 142 305 178 265 C 213 228 252 208 310 199" stroke="#2f88bf"/>
+  <path d="M90 371 C 117 369 152 325 192 295 C 232 266 272 222 310 203" stroke="#94a0a8"/>
+  </g>
+  <text x="345" y="192" fill="#0D1F3C" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="54" font-weight="700" letter-spacing="1.5">DCEPrep</text>
+  <text x="522" y="224" fill="#16707f" text-anchor="middle" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="21" font-weight="600" letter-spacing="0.6">AUTOMATED PREPROCESSING</text>
+  <text x="522" y="252" fill="#16707f" text-anchor="middle" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="21" font-weight="600" letter-spacing="0.6">FOR DCE-MRI STUDIES</text>
+  <g transform="translate(878,168)">
+  <g opacity=".38">
+  <rect x="-104" y="-118" width="176" height="200" rx="10" transform="rotate(-11)" fill="none" stroke="#8C9BA8" stroke-width="7"/>
+  </g>
+  <g opacity=".62">
+  <rect x="-92" y="-112" width="176" height="200" rx="10" transform="rotate(-5.5)" fill="none" stroke="#8C9BA8" stroke-width="7"/>
+  </g>
+  <rect x="-88" y="-100" width="176" height="200" rx="10" fill="#8C9BA8"/>
+  <rect x="-66" y="-78" width="132" height="156" rx="6" fill="#FBFAF6"/>
+  <path d="M0 -96 V-58 M0 58 V96 M-84 0 H-46 M46 0 H84" stroke="#E0402A" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="0" cy="0" r="15" fill="none" stroke="#E0402A" stroke-width="7"/>
+  </g>
+</svg>

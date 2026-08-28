@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+     role="img" aria-label="parametric_scripts">
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="2"/>
+    <path d="M12 3.5 V20.5 M3.5 12 H20.5" opacity=".3" stroke-width="1.5"/>
+    <rect x="9" y="9" width="6" height="6" fill="currentColor" stroke="none" opacity=".55"/>
+  </g>
+</svg>

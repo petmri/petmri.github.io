@@ -1,0 +1,2 @@
+# Pinned: Zensical is pre-1.0 and its config surface is still moving.
+zensical==0.0.57

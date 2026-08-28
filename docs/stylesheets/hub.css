@@ -1,0 +1,114 @@
+/* ==========================================================================
+   DCEasy hub — page-specific styles
+   Source of truth: petmri/petmri.github.io › docs/stylesheets/hub.css
+
+   Only the hub loads this. Everything shared with ROCKETSHIP and DCEPrep
+   belongs in dceasy.css instead, which all three sites carry.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tool cards
+   Rendered markup per card is: a <p> holding the mark, a <p> holding the name
+   and language, an <hr>, the body, then the links. The paragraph margins have
+   to come out so the mark and name read as one block.
+   -------------------------------------------------------------------------- */
+
+.md-typeset .dceasy-tools > ul > li {
+  display: flex;
+  flex-direction: column;
+}
+
+.md-typeset .dceasy-tools > ul > li > p {
+  margin: 0;
+}
+
+.md-typeset .dceasy-tools > ul > li > hr {
+  margin: .8em 0 .7em;
+}
+
+/* Push the links to the bottom so cards of different body lengths still line
+   their link rows up. */
+.md-typeset .dceasy-tools > ul > li > p:last-child {
+  margin-top: auto;
+  padding-top: .9em;
+}
+
+.dceasy-tool-mark {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-bottom: .45em;
+  /* The marks are drawn in currentColor. Taking the link colour rather than the
+     body colour makes them read as identity rather than as decoration, and it
+     tracks the palette in both schemes. */
+  color: var(--md-typeset-a-color);
+}
+
+.dceasy-tool-name {
+  font-family: var(--dceasy-ui-font);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+.dceasy-tool-lang {
+  display: block;
+  margin-top: .15em;
+  font-family: var(--md-code-font-family, monospace);
+  font-size: .58rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .dceasy-tool-link {
+  display: inline-block;
+  margin-right: 1em;
+  font-family: var(--dceasy-ui-font);
+  font-size: .66rem;
+  font-weight: 600;
+}
+
+.md-typeset .dceasy-tool-link:last-child {
+  margin-right: 0;
+}
+
+/* --------------------------------------------------------------------------
+   "Which tool do I need?" table
+   Two columns, one long and one short — let the first take the room.
+
+   Scoped to its own wrapper, not to every unclassed table. The tool pages
+   carry tables whose last column is prose, and an unscoped rule sets those
+   nowrap too — which pushes them wider than the content column.
+   -------------------------------------------------------------------------- */
+
+.md-typeset .dceasy-need-table td:last-child {
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Tool page header
+   The mark sits above the h1 as identity, at the size the h1 sets rather than
+   the 1.5rem the cards use. Its paragraph margin comes out so the mark and the
+   title read as one block, the way the card mark and name do.
+   -------------------------------------------------------------------------- */
+
+.md-typeset .dceasy-tool-page-mark-wrap {
+  margin: 0 0 .35em;
+  line-height: 0;
+}
+
+.dceasy-tool-page-mark {
+  display: block;
+  width: 2.75rem;
+  height: 2.75rem;
+  /* Drawn in currentColor. Link colour rather than body colour, matching the
+     card marks — identity, not decoration, and it tracks both schemes. */
+  color: var(--md-typeset-a-color);
+}
+
+/* The h1 leads with the mark directly above it, so its default top margin
+   would open a gap the pair does not want. */
+.md-typeset .dceasy-tool-page-mark-wrap + h1 {
+  margin-top: 0;
+}

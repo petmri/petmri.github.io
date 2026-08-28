@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
+     role="img" aria-label="AIFArtist">
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 16.6 H7 C8.7 16.6 9 7.6 11.5 7.6 C14 7.6 13.9 11.9 20.5 12.9"/>
+    <rect x="7.5" y="3.6" width="8" height="8" rx="1.5" opacity=".55" stroke-width="1.5"/>
+    <circle cx="15.5" cy="3.6" r="1.5" fill="currentColor" stroke="none"/>
+  </g>
+</svg>

@@ -1,0 +1,50 @@
+# ==============================================================================
+# DCEasy hub — dceasy.org
+#
+# Built with Zensical rather than Material. Material for MkDocs reaches EOL on
+# 5 Nov 2026, and there is no reason to build a new site twice; ROCKETSHIP and
+# DCEPrep follow in step 13 of THEME-PLAN.md.
+#
+# This repo *is* the source of truth for the shared theme, so it inherits from
+# theme/ directly instead of keeping the copy the other two sites need.
+# ==============================================================================
+INHERIT: ./theme/dceasy-base.yml
+
+site_name: DCEasy
+site_description: >-
+  Open-source tools for quantitative dynamic contrast-enhanced MRI — DICOM to
+  BIDS conversion, preprocessing, T1 mapping, arterial input function
+  selection, pharmacokinetic modelling and analysis.
+site_url: https://dceasy.org/
+repo_url: https://github.com/petmri
+repo_name: petmri
+copyright: DCEasy · PET/MRI Lab, Loma Linda University
+
+theme:
+  # "classic" keeps the hub visually aligned with ROCKETSHIP and DCEPrep, which
+  # are still on Material. Revisit once all three are on Zensical — "modern" is
+  # Zensical's own look, and the family should switch together or not at all.
+  variant: classic
+  favicon: assets/favicon.svg
+
+# extra_css is a LIST, so declaring it here replaces the base's entry rather
+# than adding to it — dceasy.css has to be repeated. Same trap as theme.features.
+extra_css:
+  - stylesheets/dceasy.css
+  - stylesheets/hub.css
+
+nav:
+  - Home: index.md
+  # Pipeline order, by the first stage each tool covers — not alphabetical,
+  # so the tab reads the way the diagram does.
+  - Tools:
+      - dce2bids: tools/dce2bids.md
+      - DCEPrep: tools/dceprep.md
+      - AutoAIF: tools/autoaif.md
+      - AIFArtist: tools/aifartist.md
+      - parametric_scripts: tools/parametric_scripts.md
+      - ROCKETSHIP: tools/rocketship.md
+  - Concepts:
+      - What DCE-MRI is: concepts/dce-mri.md
+      - Quantitative and qualitative analysis: concepts/quantitative-analysis.md
+      - The expected BIDS layout: concepts/bids-layout.md

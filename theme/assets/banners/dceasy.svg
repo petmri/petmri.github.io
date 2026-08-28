@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1065 389"
+     class="dceasy-band" role="img"
+     aria-label="DCEasy — Open tools for quantitative DCE-MRI">
+  <defs>
+  <linearGradient id="dceasy-band-dceasy" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#FBFAF6"/>
+  <stop offset="1" stop-color="#EDF0F2"/>
+  </linearGradient>
+  </defs>
+  <rect width="1065" height="389" fill="url(#dceasy-band-dceasy)"/>
+  <g stroke="#D5DBDF" stroke-width="1" fill="none">
+  <path d="M145 17 V371 M200 17 V371 M255 17 V371 M90 87.8 H310 M90 158.6 H310 M90 229.4 H310 M90 300.2 H310"/>
+  </g>
+  <path d="M90 17 V371 H310" stroke="#0D1F3C" stroke-width="2.5" fill="none"/>
+  <g fill="none" stroke-width="3.6" stroke-linecap="round">
+  <path d="M90 371 C 103 371 122 95 145 68 C 158 53 168 120 182 175 C 205 265 265 296 310 305" stroke="#0D1F3C"/>
+  <path d="M90 371 C 106 371 132 200 168 178 C 205 156 235 180 265 190 C 283 196 297 197 310 198" stroke="#16707f"/>
+  <path d="M90 371 C 112 369 142 305 178 265 C 213 228 252 208 310 199" stroke="#2f88bf"/>
+  <path d="M90 371 C 117 369 152 325 192 295 C 232 266 272 222 310 203" stroke="#94a0a8"/>
+  </g>
+  <text x="345" y="192" fill="#0D1F3C" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="54" font-weight="700" letter-spacing="1.5">DCEasy</text>
+  <text x="522" y="224" fill="#16707f" text-anchor="middle" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="21" font-weight="600" letter-spacing="0.6">QUANTITATIVE DCE-MRI,</text>
+  <text x="522" y="252" fill="#16707f" text-anchor="middle" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="21" font-weight="600" letter-spacing="0.6">END TO END</text>
+  <g transform="translate(878,178)">
+  <path d="M-130 74 H-74 C-47 74 -42 -68 -6 -68 C30 -68 29 -1 130 14" fill="none" stroke="#8C9BA8" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+  <g fill="#8C9BA8">
+  <rect x="-142" y="62" width="24" height="24" rx="5"/>
+  <rect x="-72.2" y="47.7" width="24" height="24" rx="5"/>
+  <rect x="-50.7" y="-26.6" width="24" height="24" rx="5"/>
+  <rect x="-7.9" y="-78" width="24" height="24" rx="5"/>
+  <rect x="47.3" y="-24.8" width="24" height="24" rx="5"/>
+  </g>
+  <rect x="118" y="2" width="24" height="24" rx="5" fill="#E0402A"/>
+  </g>
+</svg>

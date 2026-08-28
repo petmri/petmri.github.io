@@ -1,0 +1,14 @@
+# Zensical build output and cache
+/site/
+/.zensical/
+/.cache/
+.venv/
+
+# Local working files, deliberately not part of the published repo.
+# THEME-PLAN.md is the migration plan and stays on disk for reference;
+# assets/ holds the design reference it embeds.
+/THEME-PLAN.md
+/assets/
+
+# Editor and agent configuration, machine-specific.
+/.claude/
