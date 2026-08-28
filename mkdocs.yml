@@ -21,16 +21,12 @@ repo_name: petmri
 copyright: DCEasy · PET/MRI Lab, Loma Linda University
 
 theme:
-  # "classic" keeps the hub visually aligned with ROCKETSHIP and DCEPrep, which
-  # are still on Material. Revisit once all three are on Zensical — "modern" is
-  # Zensical's own look, and the family should switch together or not at all.
-  variant: classic
   favicon: assets/favicon.svg
 
-# extra_css is a LIST, so declaring it here replaces the base's entry rather
-# than adding to it — dceasy.css has to be repeated. Same trap as theme.features.
+# Zensical CONCATENATES inherited lists where MkDocs replaced them, so the
+# base's stylesheets/dceasy.css is already here and repeating it would load the
+# file twice. Only the hub-specific sheet belongs below.
 extra_css:
-  - stylesheets/dceasy.css
   - stylesheets/hub.css
 
 nav:
