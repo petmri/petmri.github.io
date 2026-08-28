@@ -8,7 +8,7 @@ title: ROCKETSHIP
 
 # ROCKETSHIP
 
-ROCKETSHIP is the DCE-MRI analysis suite — AIF selection, multi-model pharmacokinetic fitting and results visualisation. It has its own documentation site.
+ROCKETSHIP is the DCE-MRI analysis suite — AIF selection, multi-model pharmacokinetic fitting and results visualization. It has its own documentation site.
 
 [Documentation](https://dceasy.org/ROCKETSHIP/){ .md-button }
 [Repository](https://github.com/petmri/ROCKETSHIP){ .md-button }

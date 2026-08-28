@@ -166,7 +166,7 @@ collide.
 
 The curve panel updates live as you paint, and draws a separate trace per label — so painting
 label 1 and label 2 in different vessels compares them directly, in place. Optional extra plots
-normalise to the first or second timepoint, which is the quickest way to see whether the
+normalize to the first or second timepoint, which is the quickest way to see whether the
 baseline is usable.
 
 The controls worth knowing before your first session:
@@ -184,7 +184,7 @@ The controls worth knowing before your first session:
 to that rater's flags CSV and moves on — flagged cases never come back for that rater. Use it
 rather than leaving a bad ROI behind; the flags file is itself a study record.
 
-Everything else — painting, fill, label selection — is standard napari labels-layer behaviour.
+Everything else — painting, fill, label selection — is standard napari labels-layer behavior.
 
 ## Full control reference
 

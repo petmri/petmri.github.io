@@ -38,8 +38,8 @@
   width: 1.5rem;
   height: 1.5rem;
   margin-bottom: .45em;
-  /* The marks are drawn in currentColor. Taking the link colour rather than the
-     body colour makes them read as identity rather than as decoration, and it
+  /* The marks are drawn in currentColor. Taking the link color rather than the
+     body color makes them read as identity rather than as decoration, and it
      tracks the palette in both schemes. */
   color: var(--md-typeset-a-color);
 }
@@ -102,7 +102,7 @@
   display: block;
   width: 2.75rem;
   height: 2.75rem;
-  /* Drawn in currentColor. Link colour rather than body colour, matching the
+  /* Drawn in currentColor. Link color rather than body color, matching the
      card marks — identity, not decoration, and it tracks both schemes. */
   color: var(--md-typeset-a-color);
 }

@@ -24,7 +24,7 @@ version never had — but the other maps have not been ported yet.
 | B1 correction | Yes | No |
 | Reads acquisition parameters from BIDS | Yes | No |
 | GPU acceleration | Yes, via Gpufit | No |
-| Needs a MATLAB licence | No | Yes |
+| Needs a MATLAB license | No | Yes |
 
 **So, in practice.** If you want a VFA T1 map — which is what a DCE study needs — use the
 Python pipeline. If you want inversion-recovery T1, T2, T2\*, ADC or a custom model, the MATLAB
@@ -34,7 +34,7 @@ scripts are the only option, and will remain so until those models are ported.
 
 ## The Python pipeline
 
-Fits T1 and the equilibrium magnetisation ρ voxel by voxel from a variable flip angle series —
+Fits T1 and the equilibrium magnetization ρ voxel by voxel from a variable flip angle series —
 several spoiled gradient echo images of the same anatomy at different flip angles. The
 pre-contrast T1 map is what
 [converts DCE signal to concentration](../concepts/dce-mri.md#conversion-of-signal-intensity-to-concentration).
@@ -42,7 +42,7 @@ pre-contrast T1 map is what
 | `fit_type` | Method | When |
 | --- | --- | --- |
 | `t1_fa_fit` | Nonlinear fit across all angles | The default, and the right choice unless you have a reason |
-| `t1_fa_linear_fit` | Linearised form, solved directly | Faster, but noise on the signal biases the result |
+| `t1_fa_linear_fit` | Linearized form, solved directly | Faster, but noise on the signal biases the result |
 | `t1_fa_two_point_fit` | Closed form from two flip angles | Where only two angles were acquired, or for a fast approximation |
 
 Anything else is rejected outright rather than silently ignored.
@@ -58,7 +58,7 @@ cd ROCKETSHIP
 python3 install.py
 ```
 
-No MATLAB licence is required for the Python path.
+No MATLAB license is required for the Python path.
 
 ### Run it
 
@@ -80,12 +80,12 @@ python run_parametric_python_cli.py --config python/parametric_run_example.json
 ### Configuration
 
 Two files, with deliberately separate jobs. `python/parametric_defaults.json` holds every
-default and preference — edit it to change behaviour across all runs. A **run configuration**
+default and preference — edit it to change behavior across all runs. A **run configuration**
 names only the data and whatever that run overrides, which keeps configs short and makes the
 difference between two runs visible.
 
 Nothing in the source carries a fallback, so a key absent from both is an error rather than a
-silent default, and an unrecognised key is rejected rather than ignored. Relative paths in a
+silent default, and an unrecognized key is rejected rather than ignored. Relative paths in a
 run configuration resolve against **the configuration file's own directory**, so a config and
 its data move together.
 

@@ -8,7 +8,7 @@ Every DCEasy tool downstream of conversion locates its inputs by convention rath
 explicit configuration. This requires that the dataset conform to the layout produced by
 [dce2bids](../tools/dce2bids.md).
 
-## Raw data organisation
+## Raw data organization
 
 ```text
 <bids_root>/
@@ -29,7 +29,7 @@ Two aspects of this layout depart from the BIDS specification and warrant explan
 **The `dce/` datatype is non-standard.** No BIDS specification for DCE-MRI has yet been
 ratified, so DCEasy retains the `dce/` directory and `DCE` suffix and excludes them from
 validation by means of `.bidsignore`. Placement under `perf/` was considered and rejected, that
-datatype denoting arterial spin labelling; a derivatives-only layout was likewise rejected, DCE
+datatype denoting arterial spin labeling; a derivatives-only layout was likewise rejected, DCE
 constituting acquired rather than processed data. The decision is subject to revision should a
 BIDS extension proposal for DCE be adopted.
 
@@ -41,7 +41,7 @@ itself, which is recorded in the corresponding sidecar and read from there by th
 
 Quantitative analysis depends upon acquisition parameters, which must accompany the image data.
 `RepetitionTime`, `EchoTime`, `FlipAngle` and `MagneticFieldStrength` are required for
-modelling and are read by the tools rather than being re-entered.
+modeling and are read by the tools rather than being re-entered.
 
 Three points merit particular attention.
 
@@ -52,7 +52,7 @@ Three points merit particular attention.
     repetition time in milliseconds rather than the frame interval, and conversion tools
     deposit the correct value under a different key for each vendor.
 
-    dce2bids normalises this to a `TemporalResolution` key expressed in seconds, records the
+    dce2bids normalizes this to a `TemporalResolution` key expressed in seconds, records the
     provenance of the value in `TemporalResolutionSource`, and sets
     `TemporalResolutionReview: true` where the determination was uncertain. This flag should be
     inspected before a fit is accepted, an incorrect temporal resolution scaling every derived

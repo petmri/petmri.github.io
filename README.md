@@ -44,7 +44,7 @@ is lost on the next run; edit the source and regenerate.
 
 Both exist for the same reason: the pages inline SVG — the family band, the pipeline
 diagram, and the tool marks — and each has to be inline rather than an `<img>` to inherit
-the page's colour and webfonts. An `<img>` is isolated from the document and gets neither.
+the page's color and webfonts. An `<img>` is isolated from the document and gets neither.
 
 For tool pages only the header is generated. The prose lives in `theme/tool-pages/<slug>.md`
 and is copied through verbatim, so the writing stays hand-editable. Adding a tool is a dict

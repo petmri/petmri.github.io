@@ -33,14 +33,14 @@ python3 theme/make-pipeline.py --all      # writes theme/assets/pipeline/
 Paste the matching file **inline** into the site's `index.md`, inside a
 `<div class="dceasy-pipeline-figure">`, under the `<!-- dceasy-pipeline -->` marker.
 Inline rather than `<img>` on purpose: every stroke and label is `currentColor`, so an
-inlined diagram inherits the page's text colour and reads in both palettes. Referenced as
+inlined diagram inherits the page's text color and reads in both palettes. Referenced as
 an image it would be isolated from the page and stuck on one.
 
-The highlight is the one fixed colour. It ships as presentation attributes so the file
+The highlight is the one fixed color. It ships as presentation attributes so the file
 still reads standalone, and `dceasy.css` swaps it to the sky accent under `slate`, where
 the teal falls below contrast minimums.
 
-This replaced a Mermaid version. Mermaid routes links between subgraphs centre-to-centre,
+This replaced a Mermaid version. Mermaid routes links between subgraphs center-to-center,
 so it could not draw the wrap from stage 3 back to stage 4; it also needed hard-coded
 fills that broke in dark mode, and pulled ~400 KB of JavaScript to lay out a fixed graph.
 

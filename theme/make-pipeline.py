@@ -5,8 +5,8 @@ Six stages in two rows, drawn directly as SVG rather than with Mermaid. See
 theme/README.md for why Mermaid was dropped.
 
 Every stroke and label uses currentColor, so the diagram inherits the page's
-text colour and reads in both the light and slate palettes. Only the highlight
-is a fixed colour; dceasy.css brightens it for slate.
+text color and reads in both the light and slate palettes. Only the highlight
+is a fixed color; dceasy.css brightens it for slate.
 
     python3 theme/make-pipeline.py --all
 """
@@ -62,7 +62,7 @@ def node_svg(index, on):
     tx = x + 20
     if on:
         # fill-opacity rather than an 8-digit hex: #RRGGBBAA is fine in
-        # browsers but not in every SVG rasteriser, and these files are also
+        # browsers but not in every SVG rasterizer, and these files are also
         # used outside the docs.
         box = (f'fill="{ACCENT}" fill-opacity=".12" stroke="{ACCENT}" '
                f'stroke-width="2.5" stroke-opacity="1"')

@@ -113,7 +113,7 @@ PAGES = [
         name="DCEPrep",
         mark="dceprep",
         stub=True,
-        intro=("DCEPrep runs the whole DCE-MRI pipeline in one Dockerised pass — preprocessing, "
+        intro=("DCEPrep runs the whole DCE-MRI pipeline in one Dockerized pass — preprocessing, "
                "T1 mapping, AIF detection, fitting and QC. It has its own documentation site."),
         buttons=[("Documentation", "https://dceasy.org/DCEPrep/"),
                  ("Repository", f"{GH}/DCEPrep")],
@@ -124,7 +124,7 @@ PAGES = [
         mark="rocketship",
         stub=True,
         intro=("ROCKETSHIP is the DCE-MRI analysis suite — AIF selection, multi-model "
-               "pharmacokinetic fitting and results visualisation. It has its own documentation "
+               "pharmacokinetic fitting and results visualization. It has its own documentation "
                "site."),
         buttons=[("Documentation", "https://dceasy.org/ROCKETSHIP/"),
                  ("Repository", f"{GH}/ROCKETSHIP")],

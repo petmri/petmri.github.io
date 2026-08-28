@@ -21,7 +21,7 @@ Three physiological factors govern the shape of a tissue curve.
 **Delivery** determines how much contrast reaches the voxel and how rapidly, and reflects
 tissue perfusion. **Permeability** determines the rate at which contrast crosses the vessel
 wall into the surrounding interstitium. In healthy brain this is negligible, the blood-brain
-barrier being intact; where the barrier is compromised, as in tumour, inflammatory lesion or
+barrier being intact; where the barrier is compromised, as in tumor, inflammatory lesion or
 infarct, contrast extravasates and the curve rises higher and persists longer. **Interstitial
 volume** determines the extravascular extracellular space available to the extravasated
 contrast, and therefore how much may accumulate before tissue and plasma equilibrate.
@@ -29,7 +29,7 @@ contrast, and therefore how much may accumulate before tissue and plasma equilib
 A curve exhibiting rapid enhancement followed by rapid washout indicates good delivery with
 limited retention. A curve enhancing slowly but monotonically indicates accumulation exceeding
 clearance. These patterns form the basis of qualitative interpretation; separating the
-underlying parameters is the object of pharmacokinetic modelling.
+underlying parameters is the object of pharmacokinetic modeling.
 
 ## The arterial input function
 
@@ -86,4 +86,4 @@ washout phase under-sampled.
 
 - [Quantitative and qualitative analysis](quantitative-analysis.md), on the interpretation of
   the resulting curves
-- [The expected BIDS layout](bids-layout.md), on the organisation of a study on disk
+- [The expected BIDS layout](bids-layout.md), on the organization of a study on disk

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Wrap a mark from theme/assets/marks-16/ in the DCEasy favicon tile.
 
-A favicon gets no inherited colour from the page and needs more weight than a
+A favicon gets no inherited color from the page and needs more weight than a
 24px header mark, so each one is baked: sky tile, navy glyph.
 
 It builds from the 16px drawings, not the full-detail ones. Those are separate

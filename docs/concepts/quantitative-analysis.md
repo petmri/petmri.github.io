@@ -5,10 +5,10 @@ title: Quantitative and qualitative analysis
 # Quantitative and qualitative analysis
 
 Two distinct approaches exist for reducing DCE curves to numerical measures, and they address
-different questions. The first characterises the shape of the enhancement curve. The second
+different questions. The first characterizes the shape of the enhancement curve. The second
 estimates the physiological parameters that produced it.
 
-Both are established. The distinction is not one of rigour but of the comparisons the resulting
+Both are established. The distinction is not one of rigor but of the comparisons the resulting
 measure is required to support, whether within a single examination or across scanners,
 institutions and time.
 
@@ -22,7 +22,7 @@ conversion to concentration and without a kinetic model.
 | **Peak enhancement** | Maximum signal increase above baseline, conventionally expressed as a percentage |
 | **Wash-in slope** | Gradient of the initial upslope |
 | **Time to peak** | Interval from arrival to maximum signal intensity |
-| **Washout** | Behaviour after the peak, classified as declining, plateau or persistent |
+| **Washout** | Behavior after the peak, classified as declining, plateau or persistent |
 | **IAUC** | Initial area under the curve over a defined interval, commonly IAUC<sub>60</sub> or IAUC<sub>90</sub> |
 | **Curve type** | The type I, II and III classification of persistent, plateau and washout morphology |
 
@@ -41,7 +41,7 @@ moreover descriptive rather than mechanistic: an increased wash-in slope establi
 enhancement occurred more rapidly, but does not distinguish increased perfusion from increased
 permeability.
 
-## Pharmacokinetic modelling
+## Pharmacokinetic modeling
 
 Quantitative analysis converts signal intensity to gadolinium concentration and fits a model of
 contrast exchange to the resulting curves, with reference to the measured
@@ -64,8 +64,8 @@ analysis assumes extravasation to be effectively irreversible over the observati
 
 **Strengths.** The estimated parameters retain meaning outside the dataset in which they were
 measured. K<sup>trans</sup> is in principle comparable across scanners, institutions and time
-points, which is the precondition for multi-centre trials and for longitudinal assessment of
-treatment response. Modelling further resolves effects that curve morphology confounds: a lesion
+points, which is the precondition for multi-center trials and for longitudinal assessment of
+treatment response. Modeling further resolves effects that curve morphology confounds: a lesion
 enhancing rapidly by virtue of perfusion and one enhancing rapidly by virtue of permeability are
 similar semi-quantitatively and distinguishable after fitting.
 
@@ -96,7 +96,7 @@ in the output.
 | Resolves perfusion from permeability | No | Yes |
 | Failure mode | Apparent | Frequently silent |
 
-The governing consideration is the scope of the intended comparison. Multi-centre studies,
+The governing consideration is the scope of the intended comparison. Multi-center studies,
 longitudinal assessment of treatment response, and any analysis in which a measurement is
 compared against one acquired elsewhere require parameters expressed in physical units. Where
 comparison is confined to a single examination, or between lesions in one subject on one

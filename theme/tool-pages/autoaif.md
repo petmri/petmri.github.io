@@ -72,16 +72,16 @@ That writes four files into `--save_output_path`, named after the input:
 | File | What it is |
 | --- | --- |
 | `sub-01_desc-hmc_DCE_float_mask.nii` | The raw per-voxel probability map, resampled back to the input geometry |
-| `sub-01_desc-hmc_DCE_mask.nii` | The AIF ROI proper — the highest-probability voxels, binarised |
-| `sub-01_desc-hmc_DCE_curve.svg` | The vascular function, normalised to its own baseline |
-| `sub-01_desc-hmc_DCE_mask.svg` | The ROI overlaid on the image, at the mask's centre-of-mass slice |
+| `sub-01_desc-hmc_DCE_mask.nii` | The AIF ROI proper — the highest-probability voxels, binarized |
+| `sub-01_desc-hmc_DCE_curve.svg` | The vascular function, normalized to its own baseline |
+| `sub-01_desc-hmc_DCE_mask.svg` | The ROI overlaid on the image, at the mask's center-of-mass slice |
 
 Drop `--save_image 1` and you get the two NIfTIs only, which is what you want in a batch run.
 
 !!! tip "Check the overlay before you trust the curve"
 
     `_mask.svg` is the fastest sanity check in the pipeline. The ROI should land in a major
-    artery, not in a vein or a hyperintense edge artefact. If it does not, nothing downstream
+    artery, not in a vein or a hyperintense edge artifact. If it does not, nothing downstream
     is worth fitting.
 
 ## A cohort
@@ -105,14 +105,14 @@ cohort it is worth batching inside a single Python process instead.
 
 ## Fine-tuning on your own data
 
-The shipped weights were trained on multi-site brain DCE-MRI, and they generalise across
+The shipped weights were trained on multi-site brain DCE-MRI, and they generalize across
 scanners better than a single-site model would. Retraining is still worth it if your sequence,
 field strength or contrast protocol sits well outside that range — and the same entry point
 trains a model from scratch.
 
 ### Dataset layout
 
-Organise the data by site. Each site needs an `images/` folder and a `masks/` folder, with one
+Organize the data by site. Each site needs an `images/` folder and a `masks/` folder, with one
 mask per image under the same filename:
 
 ```
@@ -144,7 +144,7 @@ picked up as one.
 
     **Filenames must start with a subject ID followed by an underscore.** The split is taken on
     everything before the first `_`, so `sub-01_ses-1_DCE.nii.gz` and `sub-01_ses-2_DCE.nii.gz`
-    are correctly recognised as one subject and land in the same split. Filenames without an
+    are correctly recognized as one subject and land in the same split. Filenames without an
     underscore make every image its own subject, which quietly leaks sessions across the
     train/test boundary.
 

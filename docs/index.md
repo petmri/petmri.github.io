@@ -109,7 +109,7 @@ from scanner output to parameter maps; each one is also usable on its own.
 You can run the pipeline two ways.
 
 **End to end.** [dce2bids](https://github.com/petmri/dce2bids) converts the study to BIDS, then
-[DCEPrep](https://dceasy.org/DCEPrep/) takes it the rest of the way in one Dockerised run —
+[DCEPrep](https://dceasy.org/DCEPrep/) takes it the rest of the way in one Dockerized run —
 preprocessing, T1 mapping, AIF detection, fitting and QC.
 
 **Step by step.** Swap in your own tools at any stage, or use ours individually. The stages
@@ -138,7 +138,7 @@ are the six above; the cards below say which tool covers each.
 
     ---
 
-    The whole pipeline in one container: motion correction, bias field correction, z-axis normalisation, VFA T1 mapping, AIF detection, K<sup>trans</sup> fitting ROCKETSHIP, and per-case and population QC reports.
+    The whole pipeline in one container: motion correction, bias field correction, z-axis normalization, VFA T1 mapping, AIF detection, K<sup>trans</sup> fitting ROCKETSHIP, and per-case and population QC reports.
 
     [Documentation](https://dceasy.org/DCEPrep/){ .dceasy-tool-link }
     [Repository](https://github.com/petmri/DCEPrep){ .dceasy-tool-link }
@@ -187,7 +187,7 @@ are the six above; the cards below say which tool covers each.
 
     ---
 
-    A GUI-driven suite for full DCE-MRI analysis: pre-contrast T1 mapping, AIF selection and fitting, multi-model pharmacokinetic fitting (Tofts, Extended Tofts, Patlak, 2CXM, FXR, tissue uptake) and results visualisation.
+    A GUI-driven suite for full DCE-MRI analysis: pre-contrast T1 mapping, AIF selection and fitting, multi-model pharmacokinetic fitting (Tofts, Extended Tofts, Patlak, 2CXM, FXR, tissue uptake) and results visualization.
 
     [Documentation](https://dceasy.org/ROCKETSHIP/){ .dceasy-tool-link }
     [Repository](https://github.com/petmri/ROCKETSHIP){ .dceasy-tool-link }
@@ -214,7 +214,7 @@ are the six above; the cards below say which tool covers each.
 | --- | --- |
 | Convert DCE DICOMs to BIDS | [dce2bids](tools/dce2bids.md) |
 | Run the complete pipeline on BIDS data, automatically | [DCEPrep](https://dceasy.org/DCEPrep/) |
-| Run preprocessing only — motion, alignment, artefact correction | [DCEPrep](https://dceasy.org/DCEPrep/) |
+| Run preprocessing only — motion, alignment, artifact correction | [DCEPrep](https://dceasy.org/DCEPrep/) |
 | Generate T1, T2 or ADC maps | [parametric_scripts](tools/parametric_scripts.md) |
 | Find the AIF automatically, with deep learning | [AutoAIF](tools/autoaif.md) |
 | Draw and save AIF ROIs by hand, across multiple raters | [AIFArtist](tools/aifartist.md) |

@@ -14,7 +14,7 @@ site_name: DCEasy
 site_description: >-
   Open-source tools for quantitative dynamic contrast-enhanced MRI — DICOM to
   BIDS conversion, preprocessing, T1 mapping, arterial input function
-  selection, pharmacokinetic modelling and analysis.
+  selection, pharmacokinetic modeling and analysis.
 site_url: https://dceasy.org/
 repo_url: https://github.com/petmri
 repo_name: petmri
