@@ -26,7 +26,7 @@ permissions:
 
 # Queue deploys rather than cancelling them: a cancelled run still counts as a
 # completed deployment to Pages, which silently leaves the site on the older
-# build. This bit us on ROCKETSHIP.
+# build.
 concurrency:
   group: pages
   cancel-in-progress: false

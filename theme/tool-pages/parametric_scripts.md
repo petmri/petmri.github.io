@@ -155,8 +155,7 @@ to zero. The `linear_fast` variants trade confidence intervals for speed on larg
     `save_nii`, and fails at save time with undefined-function errors unless you put the NIfTI
     toolbox on the path yourself.
 
-Input images are NIfTI (`.nii`) or Analyze (`.hdr` / `.img`). DICOM is not read — the GUI's
-DICOM file filter is commented out in the source.
+Input images are NIfTI (`.nii`) or Analyze (`.hdr` / `.img`). DICOM is not read.
 
 ```matlab
 addpath(genpath('/path/to/ROCKETSHIP'))

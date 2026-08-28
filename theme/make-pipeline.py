@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Generate the DCEasy pipeline diagram as a static SVG, one variant per tool.
 
-Ported from the Claude Design project "DCE MRI Processing Pipeline",
-file "DCEASY Pipeline Diagram v2.dc.html" (two-row layout, no Mermaid).
+Six stages in two rows, drawn directly as SVG rather than with Mermaid. See
+theme/README.md for why Mermaid was dropped.
 
 Every stroke and label uses currentColor, so the diagram inherits the page's
 text colour and reads in both the light and slate palettes. Only the highlight

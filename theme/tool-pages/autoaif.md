@@ -24,11 +24,17 @@ the outputs are resampled back — but the training set spanned roughly 208×256
 - Python 3.9+
 - TensorFlow 2.12+ / Keras 2.12+
 
-!!! warning "`requirements.txt` assumes an NVIDIA host"
+!!! note "`requirements.txt` is the GPU install"
 
-    It pins `cupy`, `tensorrt` and `tensorrt_cu12`, which have no CPU or Apple Silicon
-    builds — `pip install -r requirements.txt` will fail on a machine without CUDA. On such a
-    machine, install the rest and skip those three; inference runs on CPU, just slowly.
+    It includes `cupy`, `tensorrt` and `tensorrt_cu12`, which are CUDA-only. On a CPU-only or
+    Apple Silicon machine, install the remaining dependencies directly instead:
+
+    ```bash
+    pip install matplotlib nibabel numba numpy pandas Pillow \
+      pingouin plotly psutil scipy tensorboard tensorflow
+    ```
+
+    Inference then runs on CPU, more slowly but with identical results.
 
 ## Install
 
