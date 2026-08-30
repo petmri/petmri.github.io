@@ -8,7 +8,7 @@ title: AutoAIF
 
 # AutoAIF
 
-AutoAIF finds the arterial input function in brain DCE-MRI automatically, with no manual ROI drawing. It is a 3D U-Net in Keras/TensorFlow, trained on multi-site brain DCE-MRI cohorts, and it ships with pretrained weights — so for most users this is an inference tool, not a training project.
+AutoAIF finds the arterial input function in brain DCE-MRI automatically, with no manual ROI drawing. It is a 3D U-Net in Keras/TensorFlow, trained on multi-site brain DCE-MRI cohorts, and it ships with pretrained weights — no training is required.
 
 Given a 4D DCE series it predicts a vascular function curve and the 3D mask the curve was measured from.
 
@@ -86,15 +86,13 @@ If AutoAIF contributes to published work, please cite:
 
 > Saca, L., et al. [Automatic detection of arterial input function for brain DCE-MRI in multi-site cohorts](https://doi.org/10.1002/mrm.70020). *Magnetic Resonance in Medicine*, 94(6), 2732–2744 (2025). PMID: 40808286
 
-## When to reach for it
+## When to use it
 
 Use AutoAIF when you have **brain** DCE-MRI and you want the AIF chosen the same way every
 time. See [the arterial input function](../concepts/dce-mri.md#the-arterial-input-function)
-for the background. It is most worth it on cohorts: manual AIF selection is the step where inter-rater
-variability creeps into K<sup>trans</sup>, and a fixed model removes that variance even where it
-does not strictly improve accuracy on any single case.
+for the background.
 
-Reach for something else when:
+Consider alternatives when:
 
 | Situation | Use instead |
 | --- | --- |
@@ -111,6 +109,7 @@ the outputs are resampled back — but the training set spanned roughly 208×256
 
 - Python 3.9+
 - TensorFlow 2.12+ / Keras 2.12+
+- CUDA GPU recommended but not required
 
 !!! note "`requirements.txt` is the GPU install"
 
@@ -132,8 +131,7 @@ python3 -m venv tf && source tf/bin/activate
 pip install -r requirements.txt
 ```
 
-Then fetch the pretrained weights. They are a release asset rather than part of the
-repository, so cloning alone is not enough:
+Then fetch the pretrained weights. They are posted on github, download manually or run:
 
 ```bash
 # ~470 MB
@@ -141,7 +139,7 @@ curl -L -o model_weight_huber1.h5 \
   https://github.com/petmri/AutoAIF/releases/latest/download/model_weight_huber1.h5
 ```
 
-## Worked example
+## Worked single example
 
 One subject, from a preprocessed DCE series to an AIF mask and figures:
 
@@ -169,12 +167,11 @@ Drop `--save_image 1` and you get the two NIfTIs only, which is what you want in
 !!! tip "Check the overlay before you trust the curve"
 
     `_mask.svg` is the fastest sanity check in the pipeline. The ROI should land in a major
-    artery, not in a vein or a hyperintense edge artifact. If it does not, nothing downstream
-    is worth fitting.
+    artery/vein. If it does not, it should be manually corrected.
 
-## A cohort
+## A cohort example
 
-Pass one image per call and loop in the shell:
+A simple shell or python loop is an easy way to process lots of images. Pass one image per call and loop in the shell:
 
 ```bash
 source tf/bin/activate
@@ -198,9 +195,9 @@ scanners better than a single-site model would. Retraining is still worth it if 
 field strength or contrast protocol sits well outside that range — and the same entry point
 trains a model from scratch.
 
-### Dataset layout
+### Training dataset layout
 
-Organize the data by site. Each site needs an `images/` folder and a `masks/` folder, with one
+For training organize the data by site. Each site needs an `images/` folder and a `masks/` folder, with one
 mask per image under the same filename:
 
 ```
@@ -228,13 +225,13 @@ picked up as one.
 
 !!! warning "Two constraints that will not announce themselves"
 
-    **All NIfTI files must be 32-bit.** Nothing checks this up front.
+    **All NIfTI files must be 32-bit.**
 
     **Filenames must start with a subject ID followed by an underscore.** The split is taken on
     everything before the first `_`, so `sub-01_ses-1_DCE.nii.gz` and `sub-01_ses-2_DCE.nii.gz`
     are correctly recognized as one subject and land in the same split. Filenames without an
     underscore make every image its own subject, which quietly leaks sessions across the
-    train/test boundary.
+    train/test boundary artifically inflating accuracy.
 
 ### Running it
 

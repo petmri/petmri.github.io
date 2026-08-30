@@ -8,7 +8,7 @@ title: DCEPrep
 
 # DCEPrep
 
-DCEPrep runs the whole DCE-MRI pipeline in one Dockerized pass — preprocessing, T1 mapping, AIF detection, fitting and QC. It has its own documentation site.
+DCEPrep runs the whole DCE-MRI pipeline in one Dockerized pass — preprocessing, T1 mapping, AIF detection, fitting and QC. For rull details see:
 
 [Documentation](https://dceasy.org/DCEPrep/){ .md-button }
 [Repository](https://github.com/petmri/DCEPrep){ .md-button }

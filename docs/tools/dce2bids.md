@@ -77,15 +77,15 @@ dce2bids covers step 1. The full DCEasy pipeline:
   </svg>
 </div>
 
-## When to reach for it
+## When to use it
 
-Use dce2bids at the start of a study, once per scanner or protocol. Every scanner labels its
-series and parameters differently, and the usual cost of that is a conversion script hand-tuned
-per site that nobody quite remembers the reasoning behind. dce2bids moves that work to an AI
+Use dce2bids at the start of a study, once per scanner or protocol. Different scanner software versions and protocols labels the DICOM 
+series and parameters differently. The usual cost of that is writing a custom conversion script by hand 
+per site. dce2bids moves that work to an AI
 coding agent, which inspects your actual DICOM headers, works out the mapping, and writes the
-script — after which the AI is out of the loop entirely.
+script — after which the AI is out of the loop entirely. dce2bids includes verification sripts and detailed specs for the AI agent to ensure accurate results.
 
-It converts exactly what a DCE study needs and leaves the rest of the session alone:
+It converts only what a DCE study needs and leaves the rest of the session alone:
 
 - the **dynamic DCE** series — the 4D contrast scan
 - the **VFA** flip-angle scans, for T1 mapping
@@ -98,7 +98,7 @@ convention rather than by configuration — see
 
 ## Requirements
 
-- **Linux.** Tested on Ubuntu 22.04. It may work on macOS or Windows via WSL2, but that is
+- **Tested on Linux.**  It should also work on macOS or Windows via WSL2, but that is
   untested
 - **A coding agent**, for the one-time setup only. Designed against Claude Code, Codex, VS Code
   with Copilot, and Cursor; any agent that can read and act on the repository's `SKILL.md`
@@ -109,6 +109,14 @@ convention rather than by configuration — see
     The agent's job is to work out the settings for a scanner and protocol. It writes those
     into a script, and every subsequent participant converts by running that script — no agent,
     no subscription, no variability between runs.
+
+!!! note "Data privacy and AI"
+
+    The AI agent needs at least one example dataset to create the conversion script. If there
+    are data privacy concerns a small set of anonymized datasets can be used for the script
+    creation. After that no AI agent is involved and no data leaves your local system when you
+    run the conversion script. The conversion script can be run on non-anonymized data and 
+    maintain data privacy.
 
 ## One-time setup
 
@@ -122,27 +130,26 @@ env/bootstrap.sh
 agent will run it for you — but running it yourself confirms the environment is sound before
 you involve the agent. It is safe to re-run; it skips work already done.
 
-## A new scanner or protocol
+## A new scanner or protocol — generate conversion script
 
-Open your coding agent in the `dce2bids` folder, give it access to your data directory, and ask
-for the conversion in plain language:
+Open your coding agent in the `dce2bids` folder, give it access to your data directory, and use the following prompt:
 
 > Convert all the DICOMs in `/data/study-1/` to BIDS using dce2bids. The contrast agent
 > **[your contrast agent]** was used for all DCE scans.
 
 !!! warning "Name the contrast agent"
 
+    The contrast agent name is needed to write the relaxivity in the image's json sidecar for later processing.
     If you leave it out, the tool falls back to reading it from the DICOM headers — and if it
     is missing there, the conversion raises an error and stops. If the agent varies by subject
     or by date, say so in the request and that handling gets written into the script.
 
 The repository ships worked configurations for several scanners and studies under `configs/` —
-Philips Achieva and several Siemens protocols among them. Worth a look before starting from
-scratch, since a near match shortens the setup considerably.
+Philips Achieva and several Siemens protocols among them. These serve as worked examples for the AI agent.
 
-## Every run after that
+## Every run after that — run conversion script
 
-The first run saves a script into the output dataset. Later participants need only:
+The AI agent saves a conversion script, `run_dce2bids.sh` into the `code` folder in the output BIDS directory. Later participants need only run this script. This script does not use an AI agent and all processing is done on the local machine in a deterministic way. Place new datasets in the same input folder then run the conversion script:
 
 ```bash
 /data/study-1_bids/code/run_dce2bids.sh
@@ -150,7 +157,7 @@ The first run saves a script into the output dataset. Later participants need on
 
 ## What you get
 
-Output lands next to the input by default — `/data/study-1/` in gives `/data/study-1_bids`:
+Output lands next to the input by default. If the input folder is `/data/study-1/` the output folder will be `/data/study-1_bids`:
 
 ```text
 study-1_bids/            # the BIDS dataset root
@@ -169,12 +176,12 @@ study-1_bids/            # the BIDS dataset root
 └── derivatives/         # later processing lands here
 ```
 
-`code/selection.tsv` is the one to read first when something is missing — it records what the
-tool chose and what it passed over, which is usually enough to explain a surprise.
+If expected data is missing check `code/selection.tsv` — it records what the
+tool converted and what it passed over.
 
 ## Did it work?
 
-Every conversion writes a full report to `code/bids_status_report.txt`. To re-check a dataset
+Every conversion writes a full conversion report to `code/bids_status_report.txt`. To re-check a dataset
 at any point:
 
 ```bash
@@ -186,6 +193,6 @@ plain terms.
 
 ## Going deeper
 
-Ask your coding agent — it has the tool's `SKILL.md` and can run the steps, explain a warning,
+Ask your coding agent — it has the tool's `SKILL.md` and can explain the processing steps, warnings and errors,
 or set up a new scanner. For internals and design rationale, see
 [DESIGN.md](https://github.com/petmri/dce2bids/blob/main/DESIGN.md) in the repository.

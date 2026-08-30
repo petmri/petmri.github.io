@@ -1,16 +1,16 @@
 ---
-title: What DCE-MRI is
+title: DCE-MRI in Brief
 ---
 
-# What DCE-MRI is
+# What is DCE-MRI
 
-Dynamic contrast-enhanced MRI comprises a single 4D acquisition in which one 3D volume is
-repeatedly reacquired before, during and after intravenous administration of a gadolinium-based
-contrast agent. A representative protocol acquires 45 to 50 frames at a temporal resolution of
-14 to 15 seconds, covering ten to fifteen minutes in total.
+Dynamic contrast-enhanced MRI comprises a single 4D acquisition in which one T1-weighted image is
+repeatedly acquired before, during and after intravenous administration of a gadolinium-based
+contrast agent. A typical protocol acquires 5 to 100 frames at a temporal resolution of
+2 to 60 seconds, covering five to fifteen minutes in total.
 
-Gadolinium shortens the longitudinal relaxation time of the tissue it reaches. On a
-T1-weighted sequence, signal intensity therefore increases where contrast arrives and declines
+Gadolinium shortens the longitudinal relaxation time and therefore increase signal intensity on
+T1-weighted sequences. In DCE signal intensity therefore increases where contrast arrives and declines
 as it clears. Each voxel yields a signal-versus-time curve, and it is this curve, rather than
 any individual frame, that constitutes the measurement.
 
@@ -20,13 +20,13 @@ Three physiological factors govern the shape of a tissue curve.
 
 **Delivery** determines how much contrast reaches the voxel and how rapidly, and reflects
 tissue perfusion. **Permeability** determines the rate at which contrast crosses the vessel
-wall into the surrounding interstitium. In healthy brain this is negligible, the blood-brain
-barrier being intact; where the barrier is compromised, as in tumor, inflammatory lesion or
-infarct, contrast extravasates and the curve rises higher and persists longer. **Interstitial
-volume** determines the extravascular extracellular space available to the extravasated
-contrast, and therefore how much may accumulate before tissue and plasma equilibrate.
+wall into the surrounding tissue. In healthy brain this is negligible, in other tissues (muscle
+tumor, inflammatory lesion or infarct) contrast extravasates and the tissue curve rises higher and 
+persists longer (delayed washout). **Interstitial volume** determines the extravascular extracellular 
+space available to the extravasatedccontrast, and therefore how much may accumulate before 
+tissue and plasma equilibrate.
 
-A curve exhibiting rapid enhancement followed by rapid washout indicates good delivery with
+A curve exhibiting rapid enhancement followed by rapid washout indicates high perfusion with
 limited retention. A curve enhancing slowly but monotonically indicates accumulation exceeding
 clearance. These patterns form the basis of qualitative interpretation; separating the
 underlying parameters is the object of pharmacokinetic modeling.
@@ -39,11 +39,10 @@ physiology yield different curves if injection rate, cardiac output or dose per 
 differ between the subjects examined.
 
 The arterial input function, the concentration-time curve measured in a feeding artery,
-quantifies this confound. Deconvolving the tissue response with respect to the input yields a
+quantifies this. Deconvolving the tissue response with respect to the input yields a
 result attributable to the tissue rather than to the administration. Error in the input
-function is the dominant source of systematic error in quantitative DCE-MRI, which motivates
-the provision of [two independent methods](../tools/autoaif.md) for its determination and the
-capacity to validate one against the other.
+function is the dominant source of systematic error in quantitative DCE-MRI, so extra care
+for its determination is warranted.
 
 ## Conversion of signal intensity to concentration
 
@@ -53,12 +52,11 @@ tissue, which varies between tissues and between subjects.
 
 Conversion to gadolinium concentration requires two further quantities:
 
-- the **native T1** of each voxel, derived from a variable flip angle series acquired before
+- the **pre-contrast T1** of each voxel, typically derived from a variable flip angle series acquired before
   contrast administration. This is the output of
   [parametric_scripts](../tools/parametric_scripts.md) and of the T1 mapping stage of
   [DCEPrep](https://dceasy.org/DCEPrep/)
-- the **relaxivity** of the contrast agent, which is why the agent administered must be
-  recorded with the data rather than assumed
+- the **relaxivity** of the contrast agent used
 
 Physical interpretation of the derived parameters is valid only after this conversion. The
 preceding stages of the pipeline, namely motion correction, T1 mapping and input function
@@ -77,7 +75,7 @@ Quantitative analysis requires three acquisitions, which are those converted by
 
 Two acquisition parameters constrain all subsequent analysis. **Temporal resolution** determines
 which models may be fitted: the vascular contribution is carried by the initial rapid upslope,
-and a series sampled too coarsely to resolve it cannot support estimation of plasma volume
+and a series sampled too coarsely to resolve it cannot support estimation of blood flow
 irrespective of the fitting procedure employed. **Acquisition duration** determines how well the
 slower extravasation component is constrained; a series terminated prematurely leaves the
 washout phase under-sampled.

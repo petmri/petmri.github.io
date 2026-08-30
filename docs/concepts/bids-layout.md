@@ -6,7 +6,8 @@ title: The expected BIDS layout
 
 Every DCEasy tool downstream of conversion locates its inputs by convention rather than by
 explicit configuration. This requires that the dataset conform to the layout produced by
-[dce2bids](../tools/dce2bids.md).
+[dce2bids](../tools/dce2bids.md). Currently there is no BIDS standard for DCE data so we
+have defined a proposed DCE BIDS standard below.
 
 ## Raw data organization
 
@@ -24,14 +25,14 @@ explicit configuration. This requires that the dataset conform to the layout pro
             └── sub-<l>_ses-<l>_DCE.nii.gz          # the 4D dynamic series
 ```
 
-Two aspects of this layout depart from the BIDS specification and warrant explanation.
+Two aspects of this layout depart from other BIDS specifications and warrant explanation.
 
 **The `dce/` datatype is non-standard.** No BIDS specification for DCE-MRI has yet been
 ratified, so DCEasy retains the `dce/` directory and `DCE` suffix and excludes them from
 validation by means of `.bidsignore`. Placement under `perf/` was considered and rejected, that
 datatype denoting arterial spin labeling; a derivatives-only layout was likewise rejected, DCE
-constituting acquired rather than processed data. The decision is subject to revision should a
-BIDS extension proposal for DCE be adopted.
+constituting acquired rather than processed data. This layout is subject to revision. Should a
+BIDS extension proposal for DCE be adopted we will conform to that standard.
 
 **`VFA` in `anat/` is standard.** The suffix is defined for variable flip angle T1 mapping.
 Individual flip series are disambiguated by the `flip-<index>` entity rather than by the angle
@@ -48,14 +49,14 @@ Three points merit particular attention.
 !!! warning "Temporal resolution has no single DICOM field"
 
     Frame-to-frame spacing is the principal timing quantity in DCE-MRI, yet no single DICOM tag
-    carries it reliably. The NIfTI `pixdim[4]` field frequently holds the per-excitation
-    repetition time in milliseconds rather than the frame interval, and conversion tools
-    deposit the correct value under a different key for each vendor.
+    carries it reliably and dcm2niftix does NOT reliably convert this property. The NIfTI `pixdim[4]` 
+    field frequently holds the per-excitation repetition time in milliseconds rather than the frame 
+    interval, and conversion tools deposit the correct value under a different key for each vendor.
 
     dce2bids normalizes this to a `TemporalResolution` key expressed in seconds, records the
     provenance of the value in `TemporalResolutionSource`, and sets
     `TemporalResolutionReview: true` where the determination was uncertain. This flag should be
-    inspected before a fit is accepted, an incorrect temporal resolution scaling every derived
+    inspected before a fit is accepted, an incorrect temporal resolution will scale every derived
     rate constant.
 
 !!! warning "The contrast agent must be recorded"

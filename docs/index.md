@@ -112,8 +112,7 @@ You can run the pipeline two ways.
 [DCEPrep](https://dceasy.org/DCEPrep/) takes it the rest of the way in one Dockerized run —
 preprocessing, T1 mapping, AIF detection, fitting and QC.
 
-**Step by step.** Swap in your own tools at any stage, or use ours individually. The stages
-are the six above; the cards below say which tool covers each.
+**Step by step.** Swap in your own tools at any stage, or use ours individually. The cards below say which tool covers each.
 
 ## Tools
 
@@ -229,7 +228,6 @@ are the six above; the cards below say which tool covers each.
 === "DCEPrep"
 
     ```bash
-    # The whole pipeline, in Docker
     docker pull lsaca05/dce:R2023a-main
 
     docker run --rm \
@@ -242,8 +240,7 @@ are the six above; the cards below say which tool covers each.
 === "ROCKETSHIP"
 
     ```bash
-    # -b dev: install.py and the Python module live on dev; master is still v1.3 MATLAB
-    git clone -b dev https://github.com/petmri/ROCKETSHIP.git
+    git clone https://github.com/petmri/ROCKETSHIP.git
     cd ROCKETSHIP
     python3 install.py
 
@@ -258,7 +255,7 @@ are the six above; the cards below say which tool covers each.
     python3 -m venv tf && source tf/bin/activate
     pip install -r requirements.txt
 
-    # Pretrained weights, ~470 MB
+    # Download Pretrained weights, ~470 MB
     curl -L -o model_weight_huber1.h5 \
       https://github.com/petmri/AutoAIF/releases/latest/download/model_weight_huber1.h5
 

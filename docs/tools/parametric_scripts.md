@@ -8,9 +8,9 @@ title: parametric_scripts
 
 # parametric_scripts
 
-parametric_scripts fits quantitative MRI maps voxel by voxel — T1 by variable flip angle, inversion recovery or variable TR; T2 and T2\*; and the apparent diffusion coefficient.
+parametric_scripts fits quantitative MRI maps voxel by voxel — T1 by variable flip angle, inversion recovery or variable TR; T2 and T2\*; and ADC (apparent diffusion coefficient for DWI data).
 
-It exists in two forms: the original MATLAB scripts, which cover far more ground but are now feature-frozen, and a Python pipeline inside [ROCKETSHIP](https://dceasy.org/ROCKETSHIP/) where all further development happens — currently variable flip angle T1 only. Which one you want depends on what you are mapping.
+It exists in two forms: the original MATLAB scripts, which cover all supported fit types, and a Python pipeline inside [ROCKETSHIP](https://dceasy.org/ROCKETSHIP/). Future development will focus only on the Python version, but it currently only supports variable flip angle T1 only.
 
 [Repository](https://github.com/petmri/parametric_scripts){ .md-button }
 [ROCKETSHIP docs](https://dceasy.org/ROCKETSHIP/){ .md-button }
@@ -82,7 +82,7 @@ parametric_scripts covers step 4. The full DCEasy pipeline:
 
 ## Citation
 
-parametric_scripts ships as part of ROCKETSHIP and has no separate paper. If it contributes to published work, cite ROCKETSHIP:
+parametric_scripts ships as part of ROCKETSHIP. If it contributes to published work, please cite:
 
 > Ng, T.S.C., et al. [ROCKETSHIP: a flexible and modular software tool for the planning, processing and analysis of dynamic MRI studies](https://doi.org/10.1186/s12880-015-0062-3). *BMC Medical Imaging*, 15, 19 (2015). PMID: 26076957
 
@@ -90,16 +90,16 @@ parametric_scripts ships as part of ROCKETSHIP and has no separate paper. If it 
 
 There are two, and which one you want depends entirely on what you are mapping.
 
-The **MATLAB scripts** are the original. They are far and away the more capable of the two —
+The **MATLAB scripts** are the original and have more fitting options: 
 T1 three different ways, T2, T2\*, ADC, and a hook for a model you write yourself. They are
-maintained and they work, but they are **feature-frozen**: no new models or features are going
+maintained, but are **feature-frozen**: no new models or features are going
 into them.
 
 The **Python pipeline** is where all future work happens. It lives inside
 [ROCKETSHIP](https://dceasy.org/ROCKETSHIP/) rather than in this repository, and today it fits
-**T1 from variable flip angle and nothing else**. Within that one job it is already the better
-tool — B1 correction, BIDS sidecars, GPU acceleration and QC figures are all things the MATLAB
-version never had — but the other maps have not been ported yet.
+**T1 from variable flip angle and nothing else**. It does have some features the Matlab version
+lacks — B1 correction, BIDS sidecars, GPU acceleration and QC figures, but the other maps have not 
+been ported yet.
 
 |  | Python, in ROCKETSHIP | MATLAB, this repository |
 | --- | --- | --- |
@@ -114,26 +114,21 @@ version never had — but the other maps have not been ported yet.
 | GPU acceleration | Yes, via Gpufit | No |
 | Needs a MATLAB license | No | Yes |
 
-**So, in practice.** If you want a VFA T1 map — which is what a DCE study needs — use the
-Python pipeline. If you want inversion-recovery T1, T2, T2\*, ADC or a custom model, the MATLAB
-scripts are the only option, and will remain so until those models are ported.
-
 ---
 
 ## The Python pipeline
 
 Fits T1 and the equilibrium magnetization ρ voxel by voxel from a variable flip angle series —
-several spoiled gradient echo images of the same anatomy at different flip angles. The
+several spoiled gradient echo images acquired at different flip angles. The
 pre-contrast T1 map is what
 [converts DCE signal to concentration](../concepts/dce-mri.md#conversion-of-signal-intensity-to-concentration).
 
 | `fit_type` | Method | When |
 | --- | --- | --- |
-| `t1_fa_fit` | Nonlinear fit across all angles | The default, and the right choice unless you have a reason |
-| `t1_fa_linear_fit` | Linearized form, solved directly | Faster, but noise on the signal biases the result |
-| `t1_fa_two_point_fit` | Closed form from two flip angles | Where only two angles were acquired, or for a fast approximation |
+| `t1_fa_fit` | Nonlinear fit across all angles | The default, and the most accurate |
+| `t1_fa_linear_fit` | Linearized form, solved directly | Faster, but noise causes more biases |
+| `t1_fa_two_point_fit` | Linear with two flip angles | Fastest, least accurate |
 
-Anything else is rejected outright rather than silently ignored.
 
 ### Install
 
@@ -146,7 +141,7 @@ cd ROCKETSHIP
 python3 install.py
 ```
 
-No MATLAB license is required for the Python path.
+No MATLAB license is required for the Python implementation.
 
 ### Run it
 
@@ -156,36 +151,37 @@ The installer writes a launcher for the GUI:
 ./rocketship_parametric.sh
 ```
 
-Or from the command line, against a run configuration:
+Or there is a command line tool that uses a run configuration:
 
 ```bash
 source .venv/bin/activate
 python run_parametric_python_cli.py --config python/parametric_run_example.json
 ```
 
-`run_parametric_bids_batch.py` applies the same configuration across a BIDS dataset.
+`run_parametric_bids_batch.py` can be used to process all datasets in a BIDS folder. It
+applies the same configuration across a BIDS dataset.
 
 ### Configuration
 
-Two files, with deliberately separate jobs. `python/parametric_defaults.json` holds every
-default and preference — edit it to change behavior across all runs. A **run configuration**
-names only the data and whatever that run overrides, which keeps configs short and makes the
-difference between two runs visible.
+Two files configure files are used. `python/parametric_defaults.json` holds every
+default and preference — edit it to change behavior across all runs. A seperate **run configuration**
+file (see `python/parametric_run_example.json`) names only the data and whatever that run overrides, 
+one of these will be needed for every run (the GUI generates one automatically based on user input).
 
-Nothing in the source carries a fallback, so a key absent from both is an error rather than a
-silent default, and an unrecognized key is rejected rather than ignored. Relative paths in a
+All required settings can be configured through these files without editing the python code. Relative paths in a
 run configuration resolve against **the configuration file's own directory**, so a config and
 its data move together.
 
-`tr_ms` and `flip_angles_deg` are read from the JSON sidecar beside each VFA image when you do
-not supply them — which is what [dce2bids](dce2bids.md) writes.
+The prefered method is to read `tr_ms` and `flip_angles_deg` from the JSON sidecar generated with each 
+VFA image. [dce2bids](dce2bids.md) will write these automatically. If this is not available they can be 
+specified in the run configuration file.
 
 !!! warning "An unset `b1_map_file` is not the same as no B1 correction"
 
     With no `b1_map_file` set, the pipeline looks beside each VFA image for
-    `B1_scaled_FAreg.nii` or `.nii.gz` — the MATLAB naming convention — and uses the first it
+    `B1_scaled_FAreg.nii` or `.nii.gz` — the used naming convention — and uses the file if
     finds. Only if none is present are nominal flip angles used. The run summary reports which
-    of the three happened: `explicit`, `auto` or `none`. Check it rather than assuming.
+    of the three happened: `explicit`, `auto` or `none`.
 
 !!! note "Two more things that will stop a run"
 
@@ -214,7 +210,7 @@ map, and QC figures. Voxels failing `rsquared_threshold` — 0.6 by default — 
 
 ## The MATLAB scripts
 
-The broader toolbox, and the one to use for anything other than VFA T1.
+The broader toolbox, for anything other than VFA T1.
 
 | You want | Fit type |
 | --- | --- |
@@ -234,7 +230,7 @@ to zero. The `linear_fast` variants trade confidence intervals for speed on larg
   toolboxes
 - The NIfTI toolbox on the MATLAB path
 
-!!! note "Clone ROCKETSHIP rather than this repository"
+!!! note "For typical use clone ROCKETSHIP rather than the stand alone parametric_scripts repo"
 
     The MATLAB scripts are vendored into ROCKETSHIP at `parametric_scripts/`, alongside the
     NIfTI toolbox they depend on (`external_programs/niftitools/`). That copy works as-is.

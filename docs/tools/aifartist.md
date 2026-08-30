@@ -8,9 +8,9 @@ title: AIFArtist
 
 # AIFArtist
 
-AIFArtist is a desktop app for drawing the arterial input function by hand on 4D MRI, built for review sessions where several raters work through many images in one sitting. It runs on [napari](https://napari.org): draw a 3D ROI, watch the mean signal curve update as you paint, save a BIDS-style derivative, and move straight to the next image.
+AIFArtist is a desktop app for drawing the arterial input function by hand on 4D MRI, built to efficiently and consistently draw lots of AIFs. It runs on [napari](https://napari.org): draw an ROI, watch the mean signal curve update as you paint, save a BIDS-style derivative, and move straight to the next case with a single click.
 
-It is the human-in-the-loop counterpart to [AutoAIF](autoaif.md) — and the source of the multi-rater reference that automatic selection gets measured against.
+It is the human-in-the-loop counterpart to [AutoAIF](autoaif.md) — and can also be used to review an update AIFs from AutoAIF.
 
 [Repository](https://github.com/petmri/AIFArtist){ .md-button }
 
@@ -79,17 +79,15 @@ AIFArtist covers step 3. The full DCEasy pipeline:
   </svg>
 </div>
 
-## When to reach for it
+## When to use it
 
-Reach for AIFArtist whenever a person needs to be the one choosing the ROI — and that is more
-often than it sounds. See
-[the arterial input function](../concepts/dce-mri.md#the-arterial-input-function) for what the
-ROI is for.
+Use AIFArtist whenever a person needs to be the one choosing the ROI — due to failures of AutoAIF or for comparisons. See
+[the arterial input function](../concepts/dce-mri.md#the-arterial-input-function) for a dicussion of AIF selection and common problems.
 
 | Situation | Why AIFArtist |
 | --- | --- |
-| Not brain data | [AutoAIF](autoaif.md) was trained on brain only; AIFArtist has no such limit |
-| Validating automatic selection | Several raters annotate the same cases, giving you the reference AutoAIF's output is measured against |
+| Not brain data | [AutoAIF](autoaif.md) was trained on brain only and has lower performance outside the brain |
+| Validating automatic selection | Single or multiple raters annotate the same cases, giving you a reference to measure AutoAIF's output against |
 | A case AutoAIF got wrong | Redraw it by hand without dropping the subject from the study |
 | Establishing inter-rater variability | The rater ID is baked into every output filename, so multiple passes coexist |
 
@@ -100,9 +98,7 @@ than a file dialog each time.
 ## Requirements
 
 - Python 3
-- A desktop session — this is a [napari](https://napari.org) GUI on Qt (PySide6), not a
-  headless tool. Over SSH it needs X forwarding or a remote desktop
-
+- Linux/Mac/Windows
 ## Install
 
 ```bash
@@ -166,8 +162,7 @@ collide.
 
 The curve panel updates live as you paint, and draws a separate trace per label — so painting
 label 1 and label 2 in different vessels compares them directly, in place. Optional extra plots
-normalize to the first or second timepoint, which is the quickest way to see whether the
-baseline is usable.
+normalize to the first or second timepoint, which makes it easier to compare curves with different baseline signal intensity.
 
 The controls worth knowing before your first session:
 

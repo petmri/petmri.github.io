@@ -8,10 +8,6 @@ Two distinct approaches exist for reducing DCE curves to numerical measures, and
 different questions. The first characterizes the shape of the enhancement curve. The second
 estimates the physiological parameters that produced it.
 
-Both are established. The distinction is not one of rigor but of the comparisons the resulting
-measure is required to support, whether within a single examination or across scanners,
-institutions and time.
-
 ## Semi-quantitative analysis
 
 Semi-quantitative measures are computed directly from the signal intensity curve, without
@@ -58,9 +54,9 @@ The estimated parameters are physical quantities:
 
 Model selection depends upon the tissue under examination and upon what the acquisition can
 support. [ROCKETSHIP](https://dceasy.org/ROCKETSHIP/) implements the Tofts, extended Tofts,
-Patlak, two-compartment exchange, fast exchange regime and tissue uptake models. The extended
-Tofts model incorporates a plasma term omitted by the standard Tofts formulation; Patlak
-analysis assumes extravasation to be effectively irreversible over the observation interval.
+Patlak, two-compartment exchange, fast exchange regime and tissue uptake models. For a discussion
+of model differences and appropriate model selection see 
+[pharmacokinetic models.](https://dceasy.org/ROCKETSHIP/reference/models/)
 
 **Strengths.** The estimated parameters retain meaning outside the dataset in which they were
 measured. K<sup>trans</sup> is in principle comparable across scanners, institutions and time
@@ -78,11 +74,13 @@ in the output.
   [AIFArtist](../tools/aifartist.md)
 - **A native T1 map is required.** An erroneous T1 yields an erroneous concentration and hence
   an erroneous K<sup>trans</sup>, without indication of failure
-- **Temporal resolution must be adequate.** Plasma volume cannot be recovered from a series that
-  does not resolve the first pass
-- **Model misspecification** yields plausible parameter estimates rather than a diagnostic error
+- **Temporal resolution must be adequate.** Models that resolve flow require high temporal 
+  resolution to resolve the bolus peak. Models without this term are more tolerant low low
+  temporal resolution.
+- **Model misspecification**, if the assumptions of the model are violated (e.g. no backflux
+  in the Patlak model) the results will have large errors.
 - **Absolute values reported in the literature vary between institutions** more than theory
-  predicts, largely in consequence of the preceding factors
+  predicts, largely in consequence of the preceding factors.
 
 ## Selection
 
